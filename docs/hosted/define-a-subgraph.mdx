@@ -3,3 +3,132 @@ id: define-a-subgraph
 title: Define a Subgraph
 ---
 
+A subgraph defines which data The Graph will index from Ethereum, and how it will store it. Once deployed, it will form a part of a global graph of blockchain data.
+
+![Define a Subgraph](/img/define-subgraph.png)
+
+The subgraph definition consists of a few files:
+
+- `subgraph.yaml`: a YAML file containing the subgraph manifest
+
+- `schema.graphql`: a GraphQL schema that defines what data is stored for your subgraph, and how to query it via GraphQL
+
+- `AssemblyScript Mappings`: [AssemblyScript](https://github.com/AssemblyScript/assemblyscript) code that translates from the event data in Ethereum to the entities defined in your schema (e.g. `mapping.ts` in this tutorial)
+
+Before you go into detail about the contents of the manifest file, you need to install the [Graph CLI](https://github.com/graphprotocol/graph-cli) which you will need to build and deploy a subgraph.
+
+
+## Install the Graph CLI
+
+The Graph CLI is written in JavaScript, and you will need to install either `yarn` or npm to use it; it is assumed that you have yarn in what follows. Detailed instructions for installing yarn can be found in the graph-cli repo
+
+Once you have `yarn`, install the Graph CLI by running
+
+```
+yarn global add @graphprotocol/graph-cli
+```
+
+## Create a Subgraph Project
+
+The `graph init` command can be used to set up a new subgraph project, either from an existing contract on any of the public Ethereum networks, or from an example subgraph.
+
+### From an existing contract
+
+If you already have a smart contract deployed to Ethereum mainnet or one of the testnets, bootstrapping a new subgraph from this contract can be a good way to get started.
+
+The following command creates a subgraph that indexes all events of an existing contract. It attempts to fetch the contract ABI from Etherscan and falls back to requesting a local file path. If any of the optional arguments are missing, it takes you through an interactive form.
+
+```sh
+graph init \
+  --from-contract <CONTRACT_ADDRESS> \
+  [--network <ETHEREUM_NETWORK>] \
+  [--abi <FILE>] \
+  <GITHUB_USER>/<SUBGRAPH_NAME> [<DIRECTORY>]
+```
+
+The `<GITHUB_USER>` is your github user or organization name, `<SUBGRAPH_NAME>` is the name for your subgraph, and `<DIRECTORY>` is the optional name of the directory where graph init will put the example subgraph manifest.
+
+The `<CONTRACT_ADDRESS>` is the address of your existing contract. `<ETHEREUM_NETWORK>` is the name of the Ethereum network that the contract lives on. `<FILE>` is a local path to a contract ABI file. Both `--network` and `--abi` are optional.
+
+Supported networks on the Hosted Service are:
+
+- `mainnet`
+- `kovan`
+- `rinkeby`
+- `ropsten`
+- `goerli`
+- `poa-core`
+- `xdai`
+- `poa-sokol`
+- `matic`
+- `mumbai`
+- `fantom`
+- `bsc`
+- `clover`
+
+### From an example subgraph
+
+The second mode `graph init` supports is creating a new project from an example subgraph. The following command does this:
+
+```
+graph init --from-example <GITHUB_USER>/<SUBGRAPH_NAME> [<DIRECTORY>]
+```
+
+The example subgraph is based on the Gravity contract by Dani Grant that manages user avatars and emits `NewGravatar` or `UpdateGravatar` events whenever avatars are created or updated. The subgraph handles these events by writing `Gravatar` entities to the Graph Node store and ensuring these are updated according to the events. The following sections will go over the files that make up the subgraph manifest for this example.
+
+## The Subgraph Manifest
+
+The subgraph manifest `subgraph.yaml` defines the smart contracts your subgraph indexes, which events from these contracts to pay attention to, and how to map event data to entities that Graph Node stores and allows to query. The full specification for subgraph manifests can be found here.
+
+For the example subgraph, `subgraph.yaml` is:
+
+```yml
+specVersion: 0.0.1
+description: Gravatar for Ethereum
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Gravity
+    network: mainnet
+    source:
+      address: '0x2E645469f354BB4F5c8a05B3b30A929361cf77eC'
+      abi: Gravity
+      startBlock: 6175244
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.1
+      language: wasm/assemblyscript
+      entities:
+        - Gravatar
+      abis:
+        - name: Gravity
+          file: ./abis/Gravity.json
+      eventHandlers:
+        - event: NewGravatar(uint256,address,string,string)
+          handler: handleNewGravatar
+        - event: UpdatedGravatar(uint256,address,string,string)
+          handler: handleUpdatedGravatar
+      callHandlers:
+        - function: createGravatar(string,string)
+          handler: handleCreateGravatar
+      blockHandlers:
+        - function: handleBlock
+        - function: handleBlockWithCall
+          filter:
+            kind: call
+      file: ./src/mapping.ts
+```
+
+The important entries to update for the manifest are:
+
+- description: a human-readable description of what the subgraph is. This description is displayed by the Graph Explorer when the subgraph is deployed to the Hosted Service.
+repository: the URL of the repository where the subgraph manifest can be found. This is also displayed by the Graph Explorer.
+dataSources.source: the address of the smart contract the subgraph sources, and the abi of the smart contract to use. The address is optional; omitting it allows to index matching events from all contracts.
+dataSources.source.startBlock: the optional number of the block that the data source starts indexing from. In most cases we suggest using the block in which the contract was created.
+dataSources.mapping.entities: the entities that the data source writes to the store. The schema for each entity is defined in the the schema.graphql file.
+dataSources.mapping.abis: one or more named ABI files for the source contract as well as any other smart contracts that you interact with from within the mappings.
+dataSources.mapping.eventHandlers: lists the smart contract events this subgraph reacts to and the handlers in the mapping—./src/mapping.ts in the example—that transform these events into entities in the store.
+dataSources.mapping.callHandlers: lists the smart contract functions this subgraph reacts to and handlers in the mapping that transform the inputs and outputs to function calls into entities in the store.
+dataSources.mapping.blockHandlers: lists the blocks this subgraph reacts to and handlers in the mapping to run when a block is appended to the chain. Without a filter, the block handler will be run every block. An optional filter can be provided with the following kinds: call. A call filter will run the handler if the block contains at least one call to the data source contract.

@@ -18,6 +18,46 @@
   background-color: #0c0a1d;
 }
 
+* {
+  font-family: EuclidCircular;
+}
+
+a {
+  color: #b5a6fb;
+}
+
+@font-face {
+  font-family: EuclidCircular;
+  src: url(EuclidCircularA-Regular.woff);
+}
+
+@font-face {
+  font-family: EuclidCircularLight, Arial;
+  src: url(EuclidCircularA-Light.woff);
+}
+
+@font-face {
+  font-family: EuclidCircularMedium, Arial;
+  src: url(EuclidCircularA-Medium.woff);
+}
+
+@font-face {
+  font-family: EuclidCircularBold, Arial;
+  src: url(EuclidCircularA-Bold.woff);
+}
+
+p {
+  font-size: 1.125rem;
+}
+
+.table-of-contents li a {
+  color: #b5a6fb;
+}
+
+.menu__list-item {
+  font-family: EuclidCircular;
+}
+
 blockquote {
   color: #e3e3e3;
   border-left: transparent;
@@ -53,6 +93,11 @@ blockquote {
   height: 0;
 }
 
+.col--3 div::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 .prism-code {
   border: 1px solid rgba(255, 255, 255, .18);
 }
@@ -61,8 +106,17 @@ blockquote {
   background-color: #0e0b17 !important;
 }
 
+.token-line .key {
+  color: #ffc577;
+}
+
 code {
   background-color: rgba(255,255,255,.08);
+}
+
+.token-line {
+  font-size: .9rem;
+  line-height: 1.7rem;
 }
 
 h4 code {
