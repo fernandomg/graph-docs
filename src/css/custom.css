@@ -1,0 +1,76 @@
+/* stylelint-disable docusaurus/copyright-header */
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* You can override the default Infima variables here. */
+:root {
+  --ifm-color-primary: #b2a3fb;
+  --ifm-color-primary-dark: #b2a3fb;
+  --ifm-color-primary-darker:  #b2a3fb;
+  --ifm-color-primary-darkest:  #b2a3fb;
+  --ifm-color-primary-light:  #b2a3fb;
+  --ifm-color-primary-lighter: #b2a3fb;
+  --ifm-color-primary-lightest:  #b2a3fb;
+  --ifm-code-font-size: 95%;
+  background-color: #0c0a1d;
+}
+
+blockquote {
+  color: #e3e3e3;
+  border-left: transparent;
+  padding-left: 90px;
+  padding: 20px 0px 40px 90px;
+  background-image: url(linkedList.svg);
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+
+.docusaurus-highlight-code-line {
+  background-color: rgb(72, 77, 91);
+  display: block;
+  margin: 0 calc(-1 * var(--ifm-pre-padding));
+  padding: 0 var(--ifm-pre-padding);
+}
+
+.menu__link {
+  opacity: .7;
+}
+
+.menu__link--active {
+  color: white;
+  opacity: 1;
+}
+
+.menu__link--active:hover {
+  color: white;
+}
+
+.prism-code::-webkit-scrollbar  {
+  width: 0;
+  height: 0;
+}
+
+.prism-code {
+  border: 1px solid rgba(255, 255, 255, .18);
+}
+
+.prism-code div {
+  background-color: #0e0b17 !important;
+}
+
+code {
+  background-color: rgba(255,255,255,.08);
+}
+
+h4 code {
+  font-weight: 300;
+}
+
+@media only screen and (max-width: 1500px) {
+  blockquote {
+    padding: 10px 0px 40px 90px;
+  }
+}

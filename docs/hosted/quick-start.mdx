@@ -1,0 +1,348 @@
+---
+id: quick-start
+title: Quick Start
+---
+
+This page will guide you through creating a subgraph for contracts that you deployed either to a local testnet (e.g. using Ganache), to mainnet or to one of the Ethereum testnets (Ropsten, Rinkeby or Kovan).
+
+## Local Development
+
+This guide uses Truffle and Ganache for local development. It covers the following steps:
+
+1. Set up Ganache CLI
+2. Start a local Graph Node
+3. Initialize a new subgraph
+4. Deploy an example smart contract to Ganache
+5. Deploy the subgraph to the local Graph Node
+6. Use the subgraph in a dApp built with React
+
+### 1. Set up Ganache CLI
+
+To install Truffle and Ganache globally, run one the following two commands from a terminal:
+
+```sh
+# NPM
+$ npm install -g truffle ganache-cli
+
+# Yarn
+$ yarn global add truffle ganache-cli
+```
+
+With Ganache installed, you can now run:
+
+```sh
+$ ganache-cli -h 0.0.0.0
+```
+
+in the same terminal. It will create 10 test accounts with some Ether on all of them. Note that `-h 0.0.0.0` is necessary for Ganache to be accessible from within Docker and from other machines. By default, Ganache only binds to 127.0.0.1, which can only be accessed from the host machine that Ganache runs on.
+
+__NOTE:__ Using ganache for subgraph testing can lead to unexpected consequences. Ganache will take snapshots of the blockchain state, and revert the chain to a clean deployment of the contracts while running tests. If your truffle tests are set up like this, the graph node will seize, since it is not expecting the blockchain to roll back its state. Also, if you keep deploying new instances of your contracts within your tests, the contract addresses will not match with the contract address from the deployer, and thus you will not have 1 single address to add to the `subgraph.yaml` manifest. It is recommended for users to fully understand how ganache is running tests, otherwise it will appear the graph node is not running handlers.
+
+### 2. Run a local Graph Node
+
+In another terminal:
+
+1. Clone Graph Node with
+
+```sh
+$ git clone https://github.com/graphprotocol/graph-node/
+```
+
+2. Enter the Graph Node's Docker directory:
+
+```sh
+$ cd graph-node/docker
+```
+
+3. This is for Linux users only. The Graph Node Docker Compose setup uses host.docker.internal as the alias for the host machine. On Linux, this is not supported yet. In order to replace it with the host IP address, run the following from the Docker directory:
+
+```sh
+./setup.sh
+```
+
+The script will write the host IP address into `docker-compose.yml`.
+
+4. Start a local Graph Node that will connect to Ganache on your host:
+
+```sh
+$ docker-compose up
+```
+
+### 3. Initialize a new subgraph
+
+1. Install Graph CLI globally with npm or yarn:
+
+```sh
+# NPM
+$ npm install -g @graphprotocol/graph-cli
+
+# Yarn
+$ yarn global add @graphprotocol/graph-cli
+```
+
+2. Make sure you are inside of the folder in which you want to create a subgraph on your machine, and run:
+
+
+```sh
+$ graph init --from-example <GITHUB_USERNAME>/<SUBGRAPH_NAME> [<DIRECTORY>]
+```
+
+- `<GITHUB_USERNAME>` is required. It's your GitHub username
+- `<SUBGRAPH_NAME>` is required. It's the name of your subgraph project
+- `<DIRECTORY>` is optional. It's the name of the directory that your subgraph is created in. Defaults to `<SUBGRAPH_NAME>`.
+
+This will create an example subgraph that you can use as a starting point for developing your own subgraph. For more information on how to write a subgraph, check out our docs section on Define a Subgraph.
+
+### 4. Deploy an example smart contract to Ganache
+
+After running `graph init` in step 3, you can now deploy the example smart contract that the subgraph indexes to Ganache.
+
+To do this, simply run
+
+```sh
+$ truffle compile
+$ truffle migrate
+```
+
+in the root directory of the subgraph from step 3. This will compile the `GravatarRegistry` smart contract and deploy it to Ganache. It will also execute a couple of transactions against the contract so that there is data to index.
+
+__NOTE:__ `truffle migrate` will print the address the GravatarRegistry contract is deployed to. Make sure to copy this contract, you will need it later.
+
+### 5. Deploy the subgraph to the local Graph Node
+
+1. In the root directory of your subgraph, add the contract address from the previous step to the subgraph:
+
+```sh
+$ sed -i -e \
+    's/0x2E645469f354BB4F5c8a05B3b30A929361cf77eC/<CONTRACT_ADDRESS>/g' \
+    subgraph.yaml
+```
+
+2. Install dependencies of your subgraph and run the Graph CLI code generation:
+
+```sh
+$ yarn && yarn codegen
+```
+
+3. Then, allocate the subgraph name in the Graph Node with
+
+```sh
+$ yarn create-local
+```
+
+4. Lastly, run
+
+```sh 
+$ yarn deploy-local
+```
+
+to deploy the subgraph to your local Graph Node.
+
+If you want to see the logs being processed, check out the terminal output of the Graph Node. The same for troubleshooting any errors.
+
+### 6. Use the subgraph in a dApp built with React
+
+For this, open another terminal. Then, clone an example dApp that is compatible with this subgraph with
+
+```sh 
+$ git clone https://github.com/graphprotocol/ethdenver-dapp/
+```
+
+Afterwards, enter the app directory and configure it to use the GraphQL endpoint of your example subgraph:
+
+```sh 
+$ cd ethdenver-dapp
+$ echo 'REACT_APP_GRAPHQL_ENDPOINT=http://localhost:8000/subgraphs/name/<GITHUB_USERNAME>/<SUBGRAPH_NAME>' > .env
+```
+
+Finally, install the dApp's dependencies and start it:
+
+```sh 
+$ yarn && yarn start
+```
+
+## Hosted Service
+
+This section will walk you through deploying a subgraph to the Hosted Service. If you don't have an account on Graph Explorer, you can signup with GitHub. Once you create an account, you can start creating subgraphs through the UI, and deploying them from your terminal. Graph Node supports a number of Ethereum testnets (Rinkeby, Ropsten, Kovan) in addition to mainnet.
+
+First, make sure you go to your Dashboard, and click on Add Subgraph. You can pick an optional image, and define a name for your subgraph. Once you are done, click Save and a new, undeployed subgraph will show on your Dashboard.
+
+To develop and deploy this subgraph, do the following:
+
+1. Install Graph CLI globally on your machine by using Yarn or NPM:
+
+```sh 
+$ npm install -g @graphprotocol/graph-cli
+$ yarn global add @graphprotocol/graph-cli
+```
+
+2. We have prepared an example subgraph that you can use as a starting point. You can set it up by running:
+
+```sh 
+$ graph init --from-example <GITHUB_USERNAME>/<SUBGRAPH_NAME> <DIRECTORY>
+```
+
+- `<GITHUB_USERNAME> is required. It's your GitHub username
+- `<SUBGRAPH_NAME>` is required. It's the name of your subgraph project
+- `<DIRECTORY>` is optional. It's the name of the directory that your subgraph is created in. Defaults to `<SUBGRAPH_NAME>`.
+- The previous command will print instructions on how to authenticate with the Hosted Service and how to prepare and deploy the subgraph. Simply follow these next.
+
+__NOTE:__ If you are creating a subgraph on behalf of your organization, you need to be an admin to get an access token. If you are a only a member, contact your admin.
+
+You can now watch your subgraph indexing and interact with it through a GraphQL playground in the Graph Explorer at
+
+```sh 
+https://thegraph.com/exporer/subgraph/<GITHUB_USERNAME>/<SUBGRAPH_NAME>/
+```
+
+### Use the subgraph in a dApp built with React
+
+For this, open a terminal. Then, clone an example dApp that is compatible with this subgraph with
+
+```sh 
+$ git clone https://github.com/graphprotocol/ethdenver-dapp/
+```
+
+Afterwards, enter the app directory and configure it to use the GraphQL endpoint of your example subgraph:
+
+```sh 
+$ cd ethdenver-dapp
+$ echo 'REACT_APP_GRAPHQL_ENDPOINT=https://api.thegraph.com/subgraphs/name/<GITHUB_USERNAME>/<SUBGRAPH_NAME>' > .env
+```
+
+Finally, install the dApp's dependencies and start it:
+
+```sh 
+$ yarn && yarn start
+```
+
+## FAQ
+
+#### 1. Can I delete my subgraph?
+
+It is not possible to delete subgraphs once they are created.
+
+#### 2. Can I change my subgraph name?
+
+No. Once a subgraph is created, the name cannot be changed. Make sure to think of this carefully before you create your subgraph so it is easily searchable and identifiable by other dApps.
+
+#### 3. Can I change the GitHub account associated with my subgraph?
+No. Once a subgraph is created, the associated GitHub account cannot be changed. Make sure to think of this carefully before you create your subgraph.
+
+#### 4. Am I still able to create a subgraph if my smart contracts don't have events?
+
+It is highly recommended that you structure your smart contracts to have events associated with data you are interested in querying. Event handlers in the subgraph are triggered by contract events, and are by far the fastest way to retrieve useful data.
+
+If the contracts you are working with do not contain events, your subgraph can use call and block handlers to trigger indexing. Although this is not recommended as performance will be significantly slower.
+
+#### 5. Is it possible to deploy one subgraph with the same name for multiple networks?
+
+You will need separate names for multiple networks. While you can't have different subgraphs under the same name, there are convenient ways of having a single codebase for multiple networks. Find more on this in our documentation: [Redeploying a Subgraph](https://thegraph.com/docs/deploy-a-subgraph#redeploying-a-subgraph)
+
+#### 6. How are templates different from data sources?
+Templates allow you to create data sources on the fly, while your subgraph is indexing. It might be the case that your contract will spawn new contracts as people interact with it, and since you know the shape of those contracts (ABI, events, etc) up front you can define how you want to index them in a template and when they are spawned your subgraph will create a dynamic data source by supplying the contract address.
+
+Check out the "Instantiating a data source template" section on: [Data Source Templates](https://thegraph.com/docs/define-a-subgraph#data-source-templates).
+
+#### 7. How do I make sure I'm using the latest version of graph-node for my local deployments?
+
+You can run the following command:
+
+```sh 
+docker pull graphprotocol/graph-node:latest
+```
+
+__NOTE:__ docker / docker-compose will always use whatever graph-node version was pulled the first time you ran it, so it is important to do this to make sure you are up to date with the latest version of graph-node.
+
+#### 8. How do I call a contract function or access a public state variable from my subgraph mappings?
+
+Take a look at `Access to smart contract` state inside the section [AssemblyScript API](https://thegraph.com/docs/assemblyscript-api).
+
+#### 9. Is it possible to set up a subgraph using `graph init` from `graph-cli` with two contracts? Or should I manually add another datasource in `subgraph.yaml` after running `graph init`?
+
+Unfortunately this is currently not possible. `graph init` is intended as a basic starting point, from which you can then add more data sources manually.
+
+#### 10. I want to contribute or add a GitHub issue, where can I find the open source repositories?
+
+- [graph-node](https://github.com/graphprotocol/graph-node)
+- [graph-cli](https://github.com/graphprotocol/graph-cli)
+- [graph-ts](https://github.com/graphprotocol/graph-ts)
+
+#### 11. What is the recommended way to build "autogenerated" ids for an entity when handling events?
+
+If only one entity is created during the event and if there's nothing better available, then the transaction hash + log index would be unique. You can obfuscate these by converting that to Bytes and then piping it through `crypto.keccak256` but this won't make it more unique.
+
+#### 12. When listening to multiple contracts, is it possible to select the contract order to listen to events?
+
+Within a subgraph, the events are always processed in the order they appear in the blocks, regardless of whether that is across multiple contracts or not.
+
+#### 3. Is it possible to differentiate between networks (mainnet, Kovan, Ropsten, local) from within event handlers?
+
+Yes. You can do this by importing `graph-ts` as per the example below:
+
+```javascript
+import { dataSource } from '@graphprotocol/graph-ts'
+
+dataSource.network()
+dataSource.address()
+```
+
+##### 14. Do you support block and call handlers on Rinkeby?
+
+On Rinkeby we support block handlers, but without `filter: call`. Call handlers are not supported for the time being.
+
+#### 15. Can I import ethers.js or other JS libraries into my subgraph mappings?
+
+Not currently, as mappings are written in AssemblyScript. One possible alternative solution to this is to store raw data in entities and perform logic that requires JS libraries on the client.
+
+#### 16. Is it possible to specifying what block to start indexing on?
+
+Yes. `dataSources.source.startBlock` in the `subgraph.yaml` file specifies the number of the block that the data source starts indexing from. In most cases we suggest using the block in which the contract was created: Start blocks
+
+#### 17. Are there some tips to increase performance of indexing? My subgraph is taking a very long time to sync.
+
+Yes, you should take a look at the optional start block feature to start indexing from the block that the contract was deployed: [Start blocks](https://thegraph.com/docs/define-a-subgraph#start-blocks)
+
+#### 18. Is there a way to query the subgraph directly to determine what the latest block number it has indexed?
+
+Yes! Try the following command, substituting "organization/subgraphName" with the organization under it is published and the name of your subgraph:
+
+```sh 
+curl -X POST -d '{ "query": "{indexingStatusForCurrentVersion(subgraphName: \"organization/subgraphName\") { chains { latestBlock { hash number }}}}"}' https://api.thegraph.com/index-node/graphql
+```
+
+19. What networks are supported by The Graph?
+
+The graph-node supports any Ethereum-compatible JSON RPC API chain. In the Hosted service, the following networks are supported:
+
+- Ethereum mainnet
+- Kovan
+- Rinkeby
+- Ropsten
+- Goerli
+- PoA-Core
+- xDAI
+- Sokol
+- Matic
+- Mumbai
+- Fantom
+- Binance Smart Chain
+- Clover
+
+There is work in progress towards integrating other blockchains, you can read more in our repo: [RFC-0003: Multi-Blockchain Support](https://github.com/graphprotocol/rfcs/pull/8/files).
+
+#### 20. Is it possible to duplicate a subgraph to another account or endpoint without redeploying?
+
+You have to redeploy the subgraph, but if the subgraph ID (IPFS hash) doesn't change, it won't have to sync from the beginning.
+
+#### 21. Is this possible to use Apollo Federation on top of graph-node?
+
+Federation is not supported yet, although we do want to support it in the future. At the moment, something you can do is use schema stitching, either on the client or via a proxy service.
+
+#### 22. Is there a limit to how many objects The Graph can return per query?
+
+By default query responses are limited to 100 items per collection. If you want to receive more, you can go up to 1000 items per collection and beyond that you can paginate with:
+
+```graphql
+someCollection(first: 1000, skip: <number>) { ... }
+```
