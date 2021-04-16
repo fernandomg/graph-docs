@@ -23,7 +23,7 @@
 }
 
 a {
-  color: #b5a6fb;
+  color: #c0b5ec;
 }
 
 @font-face {
@@ -32,44 +32,121 @@ a {
 }
 
 @font-face {
-  font-family: EuclidCircularLight, Arial;
+  font-family: EuclidCircularLight;
   src: url(EuclidCircularA-Light.woff);
 }
 
 @font-face {
-  font-family: EuclidCircularMedium, Arial;
+  font-family: EuclidCircularMedium;
   src: url(EuclidCircularA-Medium.woff);
 }
 
 @font-face {
-  font-family: EuclidCircularBold, Arial;
+  font-family: EuclidCircularBold;
   src: url(EuclidCircularA-Bold.woff);
+}
+
+h1, h2, h3, h4 {
+  font-family: EuclidCircularBold;
+}
+
+h2 {
+  font-size: 2.8rem;
+}
+
+h4 {
+  font-size: 1.3rem;
 }
 
 p {
   font-size: 1.125rem;
 }
 
-ul li p {
+strong {
+  font-family: EuclidCircularBold;
+}
+
+article div.markdown ul li  {
+  font-size: 1.125rem;
+  margin-bottom: 16px;
+}
+
+article div.markdown ul li ul li {
+  font-size: 1.125rem;
+  padding: 8px 0px;
+  margin-bottom: 4px;
+}
+
+article div.markdown ul li ul li:first-child {
+  padding-top: 18px;
+}
+
+ol li {
   font-size: 1.125rem;
 }
 
 .table-of-contents li a {
   color: #b5a6fb;
+  font-size: .9rem;
+
 }
 
 .menu__list-item {
   font-family: EuclidCircular;
+  font-size: .9rem;
 }
 
-blockquote {
+.menu__list-item > .menu__link--sublist.menu__link--active {
+  font-family: EuclidCircularBold;
+}
+
+.table-of-contents__link {
+  font-family: EuclidCircularBold;
+  color: #dadde1 !important;
+}
+
+ul.table-of-contents li ul li .table-of-contents__link {
+  font-family: EuclidCircular;
+
+}
+
+table tr:nth-child(2n) {
+  background-color: transparent;
+}
+
+/* blockquote {
   color: #e3e3e3;
   border-left: transparent;
   padding-left: 90px;
-  padding: 20px 0px 40px 90px;
   background-image: url(linkedList.svg);
-  background-position: top left;
+  background-position: center left;
   background-repeat: no-repeat;
+  background-size: 90px 80px;  
+} */
+
+blockquote {
+  position: relative;
+  padding: 20px 0 60px;
+  position: relative;
+  color: #e3e3e3;
+  border-left: transparent;
+  padding-left: 90px;
+}
+
+blockquote p:first-child {
+  margin-top: 12px;
+}
+
+blockquote::before {
+  background: url(linkedList.svg) no-repeat;
+  content: '';
+  display: block;
+  height: 72px;
+  left: 0px;
+  position: absolute;
+  right: 0;
+  width: 72px;
+  top: 40px;
 }
 
 .docusaurus-highlight-code-line {
@@ -110,16 +187,67 @@ blockquote {
   background-color: #0e0b17 !important;
 }
 
-.token-line .key {
+.language-graphql .token-line .key {
+  color: #ffc577;
+}
+
+.language-graphql .token.keyword {
+  color: #c8aaff;
+}
+
+.language-graphql .token.plain {
+  color: #7facff;
+}
+
+.language-javascript .token.keyword, .language-typescript .token.keyword {
+  color: #c8aaff;
+  font-style: normal !important;
+}
+
+.language-javascript .token.keyword.module, .language-typescript .token.keyword.module {
+  color: #c8aaff;
+}
+
+.language-javascript .token.imports, .language-typescript .token.imports {
+  color: #ffc577;
+}
+
+.language-javascript .token.plain, .language-typescript .token.plain  {
+  color: #ffc577;
+}
+
+.language-javascript .token.string, .language-typescript .token.string  {
+  color: #cecece !important;
+}
+
+.language-javascript .token.property-access, .language-typescript .token.property-access  {
+  color: #ffc577;
+}
+
+.language-javascript .token.class-name, .language-typescript .token.class-name  {
+  color: #7facff !important;
+}
+
+.language-javascript .token.maybe-class-name, .language-typescript .token.maybe-class-name  {
+  color: #ffc577;
+}
+
+.language-javascript .token.method.function.property-access, .language-typescript .token.method.function.property-access  {
+  color: #ffc577 !important;
+}
+
+.yaml .token.key.atrule {
   color: #ffc577;
 }
 
 code {
-  background-color: rgba(255,255,255,.08);
+  background-color: #221f2c;
+  font-size: .85rem;
+  padding: 6px;
 }
 
 .token-line {
-  font-size: .9rem;
+  font-size: 1rem;
   line-height: 1.7rem;
 }
 
@@ -129,6 +257,6 @@ h4 code {
 
 @media only screen and (max-width: 1500px) {
   blockquote {
-    padding: 10px 0px 40px 90px;
+    /* padding: 10px 0px 40px 90px; */
   }
 }

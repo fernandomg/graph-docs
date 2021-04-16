@@ -1,18 +1,24 @@
 ---
-title: Master The Graph
+title: '  '
 slug: /
 ---
 
-Browse the latest documentation including API reference, articles, and sample code.
+<p
+style={{
+  fontFamily: 'EuclidCircularBold', textAlign: 'center', fontSize: '5.5rem', marginBottom: 0
+}}
+>Master The Graph</p>
+
+<p style={{textAlign: 'center'}}>Browse the latest documentation including API reference, articles, and sample code.</p>
 
 ## Hosted Service
 
 Build subgraphs or use existing subgraphs in a dApp
 
-[Read more](hosted/introduction)
+[Read more](/docs/hosted/introduction)
 
 ## Network
 
 Participate in the network as an Indexer, Curator, or Delegator
 
-[Read more](network/introduction)
+[Read more](/docs/network/network)

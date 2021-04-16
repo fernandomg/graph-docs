@@ -18,7 +18,10 @@ module.exports = {
       type: 'category',
       label: 'Network',
       items: [
-        'network/Introduction',
+        'network/network',
+        'network/indexing',
+        'network/curating',
+        'network/delegating',
       ],
     }
   ],
