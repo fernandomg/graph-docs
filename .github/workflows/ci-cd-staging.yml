@@ -32,7 +32,9 @@ jobs:
         cache-from: type=registry,ref=${{ env.BASE_IMAGE }}:latest
         cache-to: type=inline
         secrets: npmrc=//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
-        tags: ${{ env.BASE_IMAGE }}:${{ github.sha }}
+        tags: |
+          ${{ env.BASE_IMAGE }}:${{ github.sha }}
+          ${{ env.BASE_IMAGE }}:latest
         push: true
 
   deploy:
