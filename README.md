@@ -1,4 +1,6 @@
-To run the docs locally, follow these steps:
+# Graph Docs
+
+## Run locally
 
 1. Clone the repo
 
@@ -11,11 +13,15 @@ git clone git@github.com:graphprotocol/graph-docs.git
 ```sh
 cd graph-docs
 
-npm install
+yarn
 ```
 
 3. Start the server
 
 ```sh
-npm start
+yarn start
 ```
+
+## Deploy
+
+Deploy to https://staging.thegraph.com/docs by pushing updates to `main` branch.

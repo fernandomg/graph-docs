@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: graph-docs
+spec:
+  type: ClusterIP
+  selector:
+    name: graph-docs
+  ports:
+  - name: http
+    port: 3000
+    protocol: TCP
