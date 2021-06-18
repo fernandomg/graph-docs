@@ -1,0 +1,86 @@
+/* stylelint-disable docusaurus/copyright-header */
+
+/**
+ * CSS files with the .module.css suffix will be treated as CSS modules
+ * and scoped locally.
+ */
+
+.heroBanner {
+  padding: 4rem 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 966px) {
+  .heroBanner {
+    padding: 2rem;
+  }
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards {
+  display: flex;
+  gap: 48px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 1064px;
+  width: 100%;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 224px;
+    height: 280px;
+    padding: 24px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+      transform: translate3D(0, -1px, 0) scale(1.02);
+      transition: all 0.3s ease;
+      background-color: rgba(255,255,255,0.04)
+    }
+  }
+
+  .cardImg {
+    width: 96px;
+    height: 96px;
+  }
+
+  .title {
+    font-size: 1.25rem;
+    text-shadow: 0px 0px 32px rgba(111, 76, 255, 0.16), 0px 0px 16px rgba(102, 216, 255, 0.08);
+    line-height: 24px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0;
+    opacity: 0.64;
+  }
+
+  .small {
+    font-size: 0.875rem !important;
+    margin: 16px 0 0 0 !important;
+  }
+  
+}

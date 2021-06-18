@@ -48,6 +48,7 @@ a {
 
 h1, h2, h3, h4 {
   font-family: EuclidCircularBold;
+  color: white;
 }
 
 h2 {
@@ -60,6 +61,7 @@ h4 {
 
 p {
   font-size: 1.125rem;
+  color: white;
 }
 
 strong {
@@ -253,6 +255,172 @@ code {
 
 h4 code {
   font-weight: 300;
+}
+
+footer {
+  padding-bottom: 48px;
+}
+
+nav, .footer-links {
+  a {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.64);
+    letter-spacing: 0.4px;
+    font-size: 0.875rem;
+    font-family: EuclidCircularMedium;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      color: rgba(255, 255, 255, 0.88);
+      transition: all 0.3s ease;
+      text-decoration: none;
+    }
+  }
+}
+
+
+.footer-links { 
+  display:flex;
+  justify-content: space-between;
+  max-width: 480px;
+  margin: 0 auto;
+  width: 100%;
+
+  a {
+    font-weight: 500;
+  }
+}
+
+.footer-links.bottom {
+  max-width: 720px;
+  margin-top: 24px;
+
+  a {
+    color: rgba(255, 255, 255, 64);
+    font-size: 0.875rem;
+  }
+}
+
+nav {
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1340px;
+    width: 100%;
+    margin: 32px auto;
+    padding: 0 32px;
+
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      .button {
+        background: rgba(111, 76, 255, 0.08);
+        border-radius: 32px;
+        border: 1px solid rgba(111, 76, 255, 0.16);
+        padding: 8px 20px;
+
+        a {
+          display: flex;
+          align-items: center;
+          color: rgba(255, 255, 255, 0.88);
+        }
+
+        img {
+          margin-left: 4px;
+        }
+      }
+    }
+    @media screen and (max-width: 860px) {
+      display: none;
+    }
+  }
+
+  .show-mobile {
+    display: none;
+    margin: 32px auto;
+    padding: 0 32px;
+    .left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    @media screen and (max-width: 860px) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.landing {
+  position: relative;
+  padding-bottom: 140px;
+  &::before {
+    content: close-quote;
+    position: absolute;
+    width: 100%;
+    max-width: 1340px;
+    height: 530px;
+    top: 0;
+    left: 0;
+    background: url(/img/landing-header.jpg) no-repeat;
+    background-position: top center;
+    background-size: contain;
+    z-index: -3;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  .big-title {
+    font-family: EuclidCircularMedium;
+    font-size: 6rem;
+    font-weight: 600;
+    letter-spacing: -2px;
+    color: white;
+  }
+  .center {
+    margin: 0 auto;
+    max-width: 1064px;
+    width: 100%;
+    text-align: center;
+    padding-top: 280px;
+  }
+  .description {
+    color: rgba(255, 255, 255, 0.88);
+    max-width: 616px;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 1.25rem;
+  }
+  .read-more {
+    &:hover {
+      img {
+        margin-left: 8px;
+        transition: all 0.3s ease;
+      }
+    }
+    p {
+      display: inline-block;
+      font-weight: 600;
+      margin-top: 32px;
+      font-size: 1rem;
+    }
+    img {
+      margin-left: 4px;
+      transition: all 0.3s ease;
+    }
+  }
 }
 
 @media only screen and (max-width: 1500px) {
