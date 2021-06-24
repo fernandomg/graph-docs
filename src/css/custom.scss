@@ -52,6 +52,7 @@ h3,
 h4 {
   font-family: EuclidCircularBold;
   color: white;
+  text-shadow: 0 0 32px rgb(192 219 255 / 48%), 0 0 8px rgb(65 120 255 / 24%);
 }
 
 h2 {
@@ -69,6 +70,10 @@ p {
 
 strong {
   font-family: EuclidCircularBold;
+}
+
+li {
+  color: white;
 }
 
 article div.markdown ul li {
@@ -124,7 +129,7 @@ table tr:nth-child(2n) {
   background-image: url(linkedList.svg);
   background-position: center left;
   background-repeat: no-repeat;
-  background-size: 90px 80px;  
+  background-size: 90px 80px;
 } */
 
 blockquote {
@@ -160,16 +165,36 @@ blockquote::before {
 }
 
 .menu__link {
-  opacity: 0.7;
+  opacity: 0.64;
+  color: white;
 }
 
 .menu__link--active {
+  opacity: 1;
+}
+
+.menu__link:hover {
   color: white;
   opacity: 1;
 }
 
-.menu__link--active:hover {
-  color: white;
+.table-of-contents {
+  border: none;
+}
+
+.table-of-contents__link {
+  opacity: 0.7;
+  font-weight: 400;
+}
+
+.table-of-contents__link:hover {
+  opacity: 0.9;
+  font-weight: 400;
+}
+
+.table-of-contents__link--active {
+  opacity: 1;
+  font-weight: 600;
 }
 
 .prism-code::-webkit-scrollbar {
@@ -256,6 +281,7 @@ code {
   background-color: #221f2c;
   font-size: 0.85rem;
   padding: 6px;
+  color: white;
 }
 
 .token-line {
@@ -288,4 +314,8 @@ nav {
       text-decoration: none;
     }
   }
+}
+
+.docSidebarContainer_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocPage- {
+  border-right: none!important;
 }

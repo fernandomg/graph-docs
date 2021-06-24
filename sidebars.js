@@ -22,6 +22,7 @@ module.exports = {
         'network/indexing',
         'network/curating',
         'network/delegating',
+        'network/subgraph-studio'
       ],
     }
   ],
