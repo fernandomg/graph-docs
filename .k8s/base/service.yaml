@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    name: graph-docs
+    app: graph-docs
   ports:
   - name: http
     port: 3000

@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      name: graph-docs
+      app: graph-docs
   template:
     metadata:
       labels:
-        name: graph-docs
+        app: graph-docs
     spec:
       imagePullSecrets:
       - name: docker-registry

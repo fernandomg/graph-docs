@@ -5,5 +5,5 @@ set -e  # immediately fail the script on any command error
 for APP_NAME in "$@"
 do
   kubectl wait pod --for condition=Ready --timeout=300s \
-    $(kubectl get pods -l name=$APP_NAME --sort-by {.metadata.creationTimestamp} -o jsonpath={.items[-1].metadata.name})
+    $(kubectl get pods -l app=$APP_NAME --sort-by {.metadata.creationTimestamp} -o jsonpath={.items[-1].metadata.name})
 done
