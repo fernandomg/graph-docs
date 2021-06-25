@@ -7,7 +7,7 @@ on:
 
 env:
   BASE_IMAGE: ghcr.io/graphprotocol/graph-docs
-  URL: https://staging.thegraph.com/docs
+  HEALTH_CHECK_URL: https://staging.thegraph.com/newdocs
   APP_NAME: graph-docs
 
 jobs:
@@ -59,4 +59,4 @@ jobs:
       run: .github/scripts/kubectl-wait-ready.sh $APP_NAME
 
     - name: Check the endpoints
-      run: .github/scripts/npx-wait-on/run.sh $URL
+      run: .github/scripts/npx-wait-on/run.sh $HEALTH_CHECK_URL
