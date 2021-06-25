@@ -1,4 +1,4 @@
-# Subgraph Studio Terraform configs
+# Graph Docs Terraform configs
 
 ## Setup
 
