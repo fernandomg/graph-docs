@@ -95,14 +95,27 @@ ol li {
   font-size: 1.125rem;
 }
 
+table {
+  color: white;
+}
+
 .table-of-contents li a {
   color: #b5a6fb;
   font-size: 0.9rem;
 }
 
+.table-of-contents li {
+  margin: 12px 8px;
+}
+
 .menu__list-item {
   font-family: EuclidCircular;
   font-size: 0.9rem;
+  margin-top: 24px;
+}
+
+.menu__list-item .menu__list-item {
+  margin-top: 8px;
 }
 
 .menu__list-item > .menu__link--sublist.menu__link--active {

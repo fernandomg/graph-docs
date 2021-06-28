@@ -132,7 +132,7 @@ $ yarn create-local
 
 4. Lastly, run
 
-```sh 
+```sh
 $ yarn deploy-local
 ```
 
@@ -144,20 +144,20 @@ If you want to see the logs being processed, check out the terminal output of th
 
 For this, open another terminal. Then, clone an example dApp that is compatible with this subgraph with
 
-```sh 
+```sh
 $ git clone https://github.com/graphprotocol/ethdenver-dapp/
 ```
 
 Afterwards, enter the app directory and configure it to use the GraphQL endpoint of your example subgraph:
 
-```sh 
+```sh
 $ cd ethdenver-dapp
 $ echo 'REACT_APP_GRAPHQL_ENDPOINT=http://localhost:8000/subgraphs/name/<GITHUB_USERNAME>/<SUBGRAPH_NAME>' > .env
 ```
 
 Finally, install the dApp's dependencies and start it:
 
-```sh 
+```sh
 $ yarn && yarn start
 ```
 
@@ -171,14 +171,14 @@ To develop and deploy this subgraph, do the following:
 
 1. Install Graph CLI globally on your machine by using Yarn or NPM:
 
-```sh 
+```sh
 $ npm install -g @graphprotocol/graph-cli
 $ yarn global add @graphprotocol/graph-cli
 ```
 
 2. We have prepared an example subgraph that you can use as a starting point. You can set it up by running:
 
-```sh 
+```sh
 $ graph init --from-example <GITHUB_USERNAME>/<SUBGRAPH_NAME> <DIRECTORY>
 ```
 
@@ -191,7 +191,7 @@ __NOTE:__ If you are creating a subgraph on behalf of your organization, you nee
 
 You can now watch your subgraph indexing and interact with it through a GraphQL playground in the Graph Explorer at
 
-```sh 
+```sh
 https://thegraph.com/exporer/subgraph/<GITHUB_USERNAME>/<SUBGRAPH_NAME>/
 ```
 
@@ -199,20 +199,20 @@ https://thegraph.com/exporer/subgraph/<GITHUB_USERNAME>/<SUBGRAPH_NAME>/
 
 For this, open a terminal. Then, clone an example dApp that is compatible with this subgraph with
 
-```sh 
+```sh
 $ git clone https://github.com/graphprotocol/ethdenver-dapp/
 ```
 
 Afterwards, enter the app directory and configure it to use the GraphQL endpoint of your example subgraph:
 
-```sh 
+```sh
 $ cd ethdenver-dapp
 $ echo 'REACT_APP_GRAPHQL_ENDPOINT=https://api.thegraph.com/subgraphs/name/<GITHUB_USERNAME>/<SUBGRAPH_NAME>' > .env
 ```
 
 Finally, install the dApp's dependencies and start it:
 
-```sh 
+```sh
 $ yarn && yarn start
 ```
 
@@ -248,7 +248,7 @@ Check out the "Instantiating a data source template" section on: [Data Source Te
 
 You can run the following command:
 
-```sh 
+```sh
 docker pull graphprotocol/graph-node:latest
 ```
 
@@ -307,7 +307,7 @@ Yes, you should take a look at the optional start block feature to start indexin
 
 Yes! Try the following command, substituting "organization/subgraphName" with the organization under it is published and the name of your subgraph:
 
-```sh 
+```sh
 curl -X POST -d '{ "query": "{indexingStatusForCurrentVersion(subgraphName: \"organization/subgraphName\") { chains { latestBlock { hash number }}}}"}' https://api.thegraph.com/index-node/graphql
 ```
 

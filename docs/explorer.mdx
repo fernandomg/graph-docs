@@ -1,0 +1,163 @@
+---
+id: explorer
+title: The Graph Explorer
+---
+
+Welcome to the Graph Explorer, or as we like to call it, your decentralized portal into the world of subgraphs and network data. 👩🏽‍🚀
+
+The Graph Explorer consists of multiple parts where you can interact with other subgraph developers, dApp developers, curators, indexers, and delegators. First things first, once you login and connect your wallet to the Graph Explorer, you’ll be able to access your personal dashboard and update your account settings.
+
+
+## Your User Profile
+
+Your personal profile is the place for you to see your network activity, no matter how you’re participating on the network. Your Ethereum wallet will act as your user profile, and with the User Dashboard, you’ll be able to see:
+
+
+### Profile Overview Tab
+
+This is where you can see any current actions you took. This is also where you can find your profile information, description, and website (if you added one).
+
+@TODO image
+
+### Subgraphs Tab
+
+If you click into the Subgraphs tab, you’ll see your published subgraphs. This will not include any subgraphs deployed with our CLI for testing purposes – they will only show up when they are published.
+
+@TODO image
+
+### Indexing Tab
+
+If you click into the Indexing tab, you’ll find a table with all the subgraphs that you are indexing. This section will also include details about your net indexer rewards and net query fees. You’ll see the following metrics:
+
+
+* Delegated Stake - this is the stake from delegators that can be allocated by the indexer but cannot be slashed
+* Total Query Fees - this is the total fees that users have paid for queries for the indexer over time
+* Indexer Rewards - this is the total amount of indexer rewards you have received. This amount will be paid through GRT
+* Fee Cut - this is the % of query fee rebates that you will keep when you split with Delegators
+* Rewards Cut - this is the % of indexer rewards that the indexer gets to keep when splitting with delegators
+* Owned - this denotes the indexer’s deposited stake. Remember that this can be slashed for malicious or incorrect behavior
+
+
+@TODO image
+
+### Delegating Tab
+
+Delegators are important to the Graph Network. A delegator must use their knowledge to choose an indexer that will provide a healthy return on rewards.
+
+The Delegator metrics you’ll see here in this tab include:
+
+* Indexer addresses that you’re delegating to
+* Original delegation in GRT
+* Total unrealized rewards
+* Total realized rewards
+* Total delegation
+* Last delegated at dates
+
+What does this all mean? Look no further. Here you can find your active and historical delegations, along with the details of the indexers that you delegated towards. In the first half of the page, you can see your delegation chart, as well as the rewards-only chart. To the left, you can see the KPIs that reflect your current delegation metrics.
+
+* Stake: Owned - the stake deposited personally by the Indexer
+* Stake: Delegated - the stake that has been delegated by all Delegators to the Indexer
+* Delegation Capacity Available - the amount of newly delegated stake the indexer can still productively accept
+* Delegation Capacity Max Capacity - the max amount of delegated stake the Indexer can productively accept. Excess delegated stake cannot be used for allocations or reward calculations.
+* Delegation Capacity Fee Cut % - this is the % of query fees that the Indexer keeps for themselves when splitting with Delegators
+* Indexing Reward Cut - this is the % of indexing rewards that the indexer will keep for themselves. The remainder is distributed to Delegators proportional to the amount of stake they are delegating to the Indexer
+* Effective Indexing Reward Cut - these is the indexing rewards cut applied to the delegation pool. If it’s negative, it means that the indexer is giving away part of their rewards. If it’s positive, the indexer is keeping some of the rewards.
+* Query Fee Cut - this is the % of query fee rebates that the Idexer will keep for themselves. The remainder is distributed to Delegators proportional to the amount of stake they are delegating to the Indexer
+* Unrealized rewards - the total amount of rewards you have accumulated and redelegated to the indexer.
+* Total delegation - the total amount of stake you are delegating to Indexers. This number includes the unrealized rewards.
+
+In the second half of the page, you have the delegations table. Here you can see the indexers that you delegated towards, as well and their details (such as rewards cuts, cooldown, etc).
+
+With the buttons on the right side of the table, you can manage your delegation - delegate more, undelegate or withdraw your delegation after the thawing period.
+
+Keep in mind that this chart is horizontally scrollable, so if you scroll all the way to the right, you can also see the status of your delegation (delegating, undelegating, withdrawable).
+
+If you want to learn more about how to become a delegator, feel free to read our guide [here](https://thegraph.academy/delegators/what-is-a-delegator/).
+
+### Curating Tab
+
+If you click into the Curation tab, you’ll find all the subgraphs you’re signaling on. By doing so, curators highlight to indexers which subgraphs are valuable and trustworthy, thus signaling that they need to be indexed on. Within this tab, you’ll find an overview of:
+
+* All the subgraphs you’re curating on with signal details
+* Share totals per subgraph
+* Query rewards per subgraph
+* Updated at date details
+
+If you’d like to learn more about curation, feel free to read our guide [here](https://thegraph.academy/curators/curation-markets/).
+
+## Your Profile Settings
+
+Within your profile settings, you’ll be able to manage your personal profile details (like setting up an ENS name). If you’re an indexer, you have even more access to settings at your fingertips. In your user profile, you’ll be able to set up your delegation parameters and operators.
+
+* Operators take limited actions in the protocol on the indexer’s behalf, such as opening and closing allocations. Operators are most typically other Ethereum addresses with gated access to the network that indexers can personally set.
+* Delegation parameters allow you to control the distribution of GRT between you and your delegators.
+
+
+@TODO image
+
+As your official portal into the world of decentralized data, the Graph Explorer allows you to take a variety of actions, no matter your role in the network. You can get to your profile settings by opening the dropdown menu next to your address, then clicking on the Settings button.
+
+@TODO image
+
+**First up, subgraphs.** If you just finished building and publishing your subgraph in the Studio, head over to the **Subgraphs** tab on the top of the navigation bar to view recently published subgraphs. Here, you’ll be able to filter for the exact subgraph you’re looking for based on date created, category, etc.
+
+@TODO image
+
+When you click into a subgraph, you’ll be able to test queries in our playground and be able to leverage network details to make informed decisions (in the instance you’d like to leverage a subgraph for a dApp). Each subgraph will have the following details:
+
+* A name
+* An image - optional
+* Description - optional
+* A subgraph developer
+* Query URL
+* Categories - optional
+* A Status - either created, destroyed, or published on mainnet or testnet
+
+@TODO image
+
+On each subgraph’s dedicated page, you’ll find the following details:
+
+* Signal/Un-signal on your subgraphs
+* View more details such as charts, current deployment ID, and other metadata
+* Switch versions to explore past iterations of the subgraph
+* Query subgraphs via GraphQL
+* Test subgraphs in the playground
+* View the indexers that are indexing on a certain subgraph
+* Subgraph stats (allocations, curators, etc)
+
+**Next up, the Indexer section.** Within this tab, you’ll get a birds eye view of all the indexers on the network that are staking on subgraphs. You’ll be able to see an indexers’ delegation parameters, their stake, how much they have delegated to each subgraph, and how much in revenue they have made off of query fees.
+
+* Query Fee Cut - is the % of the query fee rebates that the Indexer keeps when splitting with Delegators
+* Effective Reward Cut - this is the indexing reward cut applied to the delegation pool. If it’s negative, it means that the indexer is giving away part of their rewards. If it’s positive, the indexer is keeping some of their rewards.
+* Cooldown Remaining - this is the time remaining until the indexer can update their delegation parameters again. Cooldown periods are set up by Indexers when they update their delegation parameters
+* Owned - This is the indexer’s deposited stake, which may be slashed for malicious or incorrect behavior
+* Delegated - Stake from delegators which can be allocated by the Indexer, but cannot be slashed
+* Allocated - stake that Indexers are actively allocating towards the subgraphs they are indexing.
+* Available Delegation Capacity
+* Max Delegation Capacity - the maximum amount of delegated stake the indexer can productively accept. Excess delegated stake cannot be used for allocations or rewards calculations.
+* Query Fees - this is the total fees that end users have paid for queries from this Indexer over all time
+* Indexer Rewards - this is the total indexer rewards earned by the indexer and their delegators over all time. Indexer rewards are paid through GRT issuance
+
+Indexers earn a portion of query fees based on their delegation parameters. Indexers do this by allocating a portion of their stake to certain subgraphs and serving queries for the subgraph consumers, as well as earning from the inflationary indexing rewards. If you decide to delegate your GRT to an indexer, you can click on the button on the right hand side (see image below).
+
+@TODO image
+
+@TODO image
+
+**Now to curators.** The curator table in this section will allow you to see:
+
+* The date you started curating
+* The number of GRT you deposited
+* Shares
+
+@TODO image
+
+The network stats in this tab allow curators to make informed decisions on what subgraphs they’d like to curate. On the side of the Explorer panel in the Curator tab, you can select the version you want to signal.
+
+For example, you can choose to signal on the latest version of a subgraph or on a specific version of a subgraph based on signaling details from a wallet, including stats like how much GRT has been purchased, its value, and the GRT balance. You will be able to see the current signaling shares you own for different subgraph versions in the case you need to facilitate the un-signaling process.
+
+In order to delegate, Delegators will have to choose an Indexer from the Graph Explorer page in the **Delegator tab**. Let’s take a look at what you can learn from the Graph Explorer. The network page shows you the total token supply, the amount of GRT that is presently staked, and the amount of indexing rewards that have been earned so far.
+
+@TODO image
+
+As a general rule, Delegators can see the amount of GRT that is delegated to one particular Indexer. Click here <@TODO LINK> to read more about Delegators!

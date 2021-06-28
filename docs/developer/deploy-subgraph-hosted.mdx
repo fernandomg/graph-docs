@@ -1,6 +1,6 @@
 ---
-id: deploy-a-subgraph
-title: Deploy a Subgraph
+id: deploy-subgraph-hosted
+title: Deploy a Subgraph to the Legacy Explorer
 ---
 
 In the previous section, you learned how to write the files that make up a
@@ -18,14 +18,14 @@ first. Then, navigate to the [Explorer](https://thegraph.com/explorer/),
 click on the _'Sign up with Github'_ button and complete Github's
 authorization flow.
 
-## Store the access token
+## Store the Access Token on the Legacy Explorer
 
 After creating an account, navigate to your
 [dashboard](https://thegraph.com/explorer/dashboard). Copy the access token
 displayed on the dashboard and run `graph auth https://api.thegraph.com/deploy/ <ACCESS_TOKEN>`. This will store the access token on your computer. You only
 need to do this once, or if you ever regenerate the access token.
 
-## Create the subgraph
+## Create a Subgraph on the Legacy Explorer
 
 Before deploying the subgraph, you need to create it in the Graph
 Explorer. Go to the [dashboard](https://thegraph.com/explorer/dashboard)
@@ -53,7 +53,7 @@ install the Graph CLI, how to generate the scaffolding for a new subgraph,
 and how to deploy your subgraph. The first two steps were covered in the
 [previous section](./define-a-subgraph).
 
-## Deploy the subgraph
+## Deploy a Subgraph on the Legacy Explorer
 
 Deploying your subgraph will upload the subgraph files that you've built
 with `yarn build` to IPFS and tell the Graph Explorer to start indexing

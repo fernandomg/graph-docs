@@ -1,8 +1,8 @@
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
-  title: 'My Site',
-  tagline: 'The tagline of my site',
-  url: 'https://your-docusaurus-test-site.com',
+  title: 'Graph Docs',
+  tagline: 'Master The Graph',
+  url: 'https://thegraph.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -24,13 +24,11 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/'
+          editUrl: 'https://github.com/graphprotocol/graph-docs'
         },
         blog: {
           showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/master/website/blog/'
+          editUrl: 'https://github.com/graphprotocol/graph-docs'
         },
         theme: {
           customCss: require.resolve('./src/css/custom.scss')

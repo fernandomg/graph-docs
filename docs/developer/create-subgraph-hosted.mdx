@@ -1,34 +1,7 @@
 ---
-id: define-a-subgraph
-title: Define a Subgraph
+id: create-subgraph-hosted
+title: Create a Subgraph on the Legacy Explorer
 ---
-
-A subgraph defines which data The Graph will index from Ethereum, and how it will store it. Once deployed, it will form a part of a global graph of blockchain data.
-
-![Define a Subgraph](/img/define-subgraph.png)
-
-The subgraph definition consists of a few files:
-
-- `subgraph.yaml`: a YAML file containing the subgraph manifest
-
-- `schema.graphql`: a GraphQL schema that defines what data is stored for your subgraph, and how to query it via GraphQL
-
-- `AssemblyScript Mappings`: [AssemblyScript](https://github.com/AssemblyScript/assemblyscript) code that translates from the event data in Ethereum to the entities defined in your schema (e.g. `mapping.ts` in this tutorial)
-
-Before you go into detail about the contents of the manifest file, you need to install the [Graph CLI](https://github.com/graphprotocol/graph-cli) which you will need to build and deploy a subgraph.
-
-
-## Install the Graph CLI
-
-The Graph CLI is written in JavaScript, and you will need to install either `yarn` or npm to use it; it is assumed that you have yarn in what follows. Detailed instructions for installing yarn can be found in the graph-cli repo
-
-Once you have `yarn`, install the Graph CLI by running
-
-```
-yarn global add @graphprotocol/graph-cli
-```
-
-## Create a Subgraph Project
 
 The `graph init` command can be used to set up a new subgraph project, either from an existing contract on any of the public Ethereum networks, or from an example subgraph.
 
@@ -310,7 +283,7 @@ type TokenBalance @entity {
 
 For many-to-many relationships, such as users that each may belong to any number of organizations, the most straightforward, but generally not the most performant, way to model the relationship is as an array in each of the two entities involved. If the relationship is symmetric, only one side of the relationship needs to be stored and the other side can be derived.
 
-#### Example 
+#### Example
 
 Define a reverse lookup from a `User` entity type to an `Organization` entity type. In the example below, this is achieved by looking up the `members` attribute from within the `Organization` entity. In queries, the `organizations` field on `User` will be resolved by finding all `Organization` entities that include the user's ID.
 

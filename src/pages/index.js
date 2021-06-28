@@ -11,24 +11,25 @@ const cards = Object.freeze([
     title: 'Developer',
     imageUrl: 'img/roles/developer.png',
     description: <>Create a subgraph or use existing subgraphs in a dApp.</>,
-    link: '/'
+    link: '/docs/developer/define-subgraph-hosted'
   },
   {
     title: 'Indexer',
     imageUrl: 'img/roles/indexer.png',
     description: <>Operate a node to index data and serve queries.</>,
-    link: '/'
+    link: '/docs/indexing'
   },
   {
     title: 'Curator',
     imageUrl: 'img/roles/curator.png',
-    description: <>Organize data by signaling on subgraphs.</>
+    description: <>Organize data by signaling on subgraphs.</>,
+    link: '/docs/curating'
   },
   {
     title: 'Delegator',
     imageUrl: 'img/roles/delegator.png',
     description: <>Secure the network by delegating GRT to Indexers.</>,
-    link: '/'
+    link: '/docs/delegating'
   }
 ]);
 const products = Object.freeze([
@@ -53,7 +54,7 @@ const Card = ({ imageUrl, title, description, link }) => {
   const imgUrl = useBaseUrl(imageUrl);
 
   return (
-    <Link className={styles['network-roles__card']}>
+    <Link className={styles['network-roles__card']} href={link}>
       {imgUrl && <img className={styles['network-roles__card-img']} src={imgUrl} alt={title} />}
       <h3 className={styles['network-roles__title']}>{title}</h3>
       <p className={styles['network-roles__description']}>{description}</p>

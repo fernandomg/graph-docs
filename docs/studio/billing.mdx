@@ -1,0 +1,31 @@
+---
+id: billing
+title: Billing on the Subgraph Studio
+---
+
+Invoices are statements of payment amounts owed by a customer and are typically generated on a weekly basis in the system. You’ll be required to pay fees based on the query fees you generate using your API keys. The billing contract lives on the Polygon network. It’ll allow you to:
+
+* Add and remove GRT
+* Keep track of your balances based on how much GRT you have added to your account, how much you have removed, and your invoices
+* Automatically clear payments based on query fees generated
+
+In order to add GRT to your account, you will need to go through the following steps:
+
+1. Purchase GRT and ETH on an exchange of your choice
+2. Bridge GRT to Polygon using Matic Bridge
+3. Deposit bridged GRT to the billing contract on Polygon. The billing contract address is: __@TODO___.
+
+At the end of each week, if you’re owed more than 10 GRT, you will receive an invoice based on the query fees you have generated during this period. This invoice will be paid using GRT available in your balance. Query volume is evaluated by the API keys you own. Your balance will be updated after fees are withdrawn.
+
+## Here’s how you go through our invoicing process:
+
+First off, there are 4 states your invoice can be in:
+
+1. Created - this is when your invoice has not been paid yet
+2. Paid
+3. Payment Failed - this is when there is not enough GRT in the billing contract
+4. Error - this is an error message that is unrelated to the payment failing
+
+**See the diagram below for more information:**
+
+![Billing Flow](/img/billing-flow.png)
