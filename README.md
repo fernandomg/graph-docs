@@ -22,6 +22,11 @@ yarn
 yarn start
 ```
 
-## Deploy
+## Deploying
 
-Deploy to https://staging.thegraph.com/docs by pushing updates to `main` branch.
+- Staging: on any commit to the `main` branch
+- Production: on any `v*` tag:
+  ```sh
+  git tag v1
+  git push --tags
+  ```
