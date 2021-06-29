@@ -58,10 +58,6 @@ const MobileNav = memo(({ handleCloseMenu }) => {
   );
 });
 
-const overlayEl = document.createElement('div');
-overlayEl.className = styles.overlay;
-overlayEl.id = 'mobile-overlay';
-
 const Navbar = () => {
   const [openMobileNav, setOpenMobileNav] = useState(false);
   const navRef = useRef(null);
@@ -69,6 +65,9 @@ const Navbar = () => {
 
   useEffect(() => {
     if (openMobileNav) {
+      const overlayEl = document.createElement('div');
+      overlayEl.className = styles.overlay;
+      overlayEl.id = 'mobile-overlay';
       document.querySelector('body').append(overlayEl);
       document.documentElement.style.overflow = 'hidden';
     } else {

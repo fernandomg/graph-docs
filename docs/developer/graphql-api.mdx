@@ -37,8 +37,8 @@ Query all `Token` entities:
 
 ### Sorting
 
-When querying a collection, the `orderBy` parameter may be used to sort by a specific attribute. 
-Additionally, the `orderDirection` can be used to specify the sort direction, 
+When querying a collection, the `orderBy` parameter may be used to sort by a specific attribute.
+Additionally, the `orderDirection` can be used to specify the sort direction,
 `asc` for ascending or `desc` for descending.
 
 #### Example
@@ -54,7 +54,7 @@ Additionally, the `orderDirection` can be used to specify the sort direction,
 
 ### Pagination
 
-When querying a collection, the `first` parameter can be used to paginate from the beginning of the collection. It is worth noting that the default sort order is by ID in ascending alphanumeric order, not by creation time. 
+When querying a collection, the `first` parameter can be used to paginate from the beginning of the collection. It is worth noting that the default sort order is by ID in ascending alphanumeric order, not by creation time.
 
 Further, the `skip` parameter can be used to skip entities and
 paginate. e.g. `first:100` shows the first 100 entities and `first:100,
@@ -231,13 +231,13 @@ This query will return `Challenge` entities, and their associated
 `Application` entities, as they existed directly after processing the block
 with the given hash.
 
-### Fulltext Search Queries 
+### Fulltext Search Queries
 
-Fulltext search query fields provide an expressive text search API that can be added to the subgraph schema and customized. 
-Refer to [Defining Fulltext Search Fields](/docs/hosted/define-a-subgraph#defining-fulltext-search-fields) to add fulltext search
-to your subgraph. 
+Fulltext search query fields provide an expressive text search API that can be added to the subgraph schema and customized.
+Refer to [Defining Fulltext Search Fields](/docs/developer/define-subgraph-hosted#defining-fulltext-search-fields) to add fulltext search
+to your subgraph.
 
-Fulltext search queries have one required field, `text`, for supplying search terms. Several special fulltext operators 
+Fulltext search queries have one required field, `text`, for supplying search terms. Several special fulltext operators
 are available to be used in this `text` search field.
 
 Fulltext search operators:
@@ -251,8 +251,8 @@ Fulltext search operators:
 
 #### Examples
 
-Using the `or` operator, this query will filter to blog entities with variations of either "anarchism" or "crumpet" in their 
-fulltext fields. 
+Using the `or` operator, this query will filter to blog entities with variations of either "anarchism" or "crumpet" in their
+fulltext fields.
 
 ```graphql
 {
@@ -260,26 +260,26 @@ fulltext fields.
         id
         title
         body
-        author    
+        author
     }
 }
 ```
 
 The `follow by` operator specifies a words a specific distance apart in the fulltext documents. The following query will
-return all blogs with variations of "decentralize" followed by "philosophy" 
+return all blogs with variations of "decentralize" followed by "philosophy"
 ```graphql
 {
     blogSearch(text: "decentralized <-> philosophy") {
         id
         title
         body
-        author    
+        author
     }
 }
 ```
 
-Combine fulltext operators to make more complex filters.  With a pretext search operator combined with a follow by this 
-example query will match all blog entities with words that start with "lou" followed by "music". 
+Combine fulltext operators to make more complex filters.  With a pretext search operator combined with a follow by this
+example query will match all blog entities with words that start with "lou" followed by "music".
 
 ```graphql
 {
@@ -287,7 +287,7 @@ example query will match all blog entities with words that start with "lou" foll
         id
         title
         body
-        author    
+        author
     }
 }
 ```

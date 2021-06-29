@@ -58,8 +58,8 @@ export default function Footer() {
       </div>
       <div className={styles['footer-links']}>
         <a href="https://thegraph.com/">The Graph</a>
-        <Link to={useBaseUrl('/blog')}>Blog</Link>
-        <Link to={useBaseUrl('/docs')}>Docs</Link>
+        <a href="https://thegraph.com/blog">Blog</a>
+        <Link to={useBaseUrl('/')}>Docs</Link>
         <a href="https://thegraph.com/security/">Security</a>
         <a href="https://thegraph.com/jobs/">Jobs</a>
       </div>

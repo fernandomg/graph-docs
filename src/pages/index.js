@@ -37,14 +37,14 @@ const products = Object.freeze([
     title: 'Subgraph Studio',
     imageUrl: 'img/products/Docs-Studio-Graphic.svg',
     description: 'Create Subgraphs and API keys',
-    link: '/',
+    link: '/docs/studio/subgraph-studio',
     alignment: 'LEFT'
   },
   {
     title: 'Graph Explorer',
     imageUrl: 'img/products/Docs-Explorer-Graphic.svg',
     description: 'Explorer Subgraphs and interact with the protocol',
-    link: '/',
+    link: '/docs/explorer',
     alignment: 'RIGHT'
   }
 ]);
@@ -126,7 +126,7 @@ export default function Home() {
           <p className={styles.landing__description}>
             Browse the latest developer documentation including API reference, articles, and sample code.
           </p>
-          <Link className={styles['landing__read-more']} to={useBaseUrl('docs/')}>
+          <Link className={styles['landing__read-more']} to='https://thegraph.com/blog'>
             <p>Read more About The Graph</p>
             <img src="/img/arrow-white.svg" />
           </Link>
