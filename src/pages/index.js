@@ -11,25 +11,25 @@ const cards = Object.freeze([
     title: 'Developer',
     imageUrl: 'img/roles/developer.png',
     description: <>Create a subgraph or use existing subgraphs in a dApp.</>,
-    link: '/docs/developer/define-subgraph-hosted'
+    link: '/developer/define-subgraph-hosted'
   },
   {
     title: 'Indexer',
-    imageUrl: 'img/roles/indexer.png',
+    imageUrl: 'img/roles/Indexer.png',
     description: <>Operate a node to index data and serve queries.</>,
-    link: '/docs/indexing'
+    link: '/indexing'
   },
   {
     title: 'Curator',
     imageUrl: 'img/roles/curator.png',
     description: <>Organize data by signaling on subgraphs.</>,
-    link: '/docs/curating'
+    link: '/curating'
   },
   {
     title: 'Delegator',
     imageUrl: 'img/roles/delegator.png',
     description: <>Secure the network by delegating GRT to Indexers.</>,
-    link: '/docs/delegating'
+    link: '/delegating'
   }
 ]);
 const products = Object.freeze([
@@ -37,14 +37,14 @@ const products = Object.freeze([
     title: 'Subgraph Studio',
     imageUrl: 'img/products/Docs-Studio-Graphic.svg',
     description: 'Create Subgraphs and API keys',
-    link: '/docs/studio/subgraph-studio',
+    link: '/studio/subgraph-studio',
     alignment: 'LEFT'
   },
   {
     title: 'Graph Explorer',
     imageUrl: 'img/products/Docs-Explorer-Graphic.svg',
     description: 'Explorer Subgraphs and interact with the protocol',
-    link: '/docs/explorer',
+    link: '/explorer',
     alignment: 'RIGHT'
   }
 ]);
@@ -60,7 +60,7 @@ const Card = ({ imageUrl, title, description, link }) => {
       <p className={styles['network-roles__description']}>{description}</p>
       <span to={to} className={styles['landing__read-more']}>
         <p className={styles['network-roles__small']}>Learn more</p>
-        <img src="/img/arrow-white.svg" />
+        <img src={useBaseUrl("/img/arrow-white.svg")} />
       </span>
     </Link>
   );
@@ -77,7 +77,7 @@ const ProductCardInfo = ({ title, description, to, alignment }) => {
         <span className={styles['product-info__description']}>{description}</span>
         <Link to={to} className={styles['product-info__link-btn']}>
           <span className={styles['product-info__link-btn__text']}>Learn more</span>
-          <img src="/img/arrow-white.svg" />
+          <img src={useBaseUrl("/img/arrow-white.svg")} />
         </Link>
       </div>
     </div>
@@ -128,7 +128,7 @@ export default function Home() {
           </p>
           <Link className={styles['landing__read-more']} to='https://thegraph.com/blog'>
             <p>Read more About The Graph</p>
-            <img src="/img/arrow-white.svg" />
+            <img src={useBaseUrl("/img/arrow-white.svg")} />
           </Link>
         </div>
         <section className={styles['network-roles']}>

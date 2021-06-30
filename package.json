@@ -12,7 +12,8 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "docker:build": "DOCKER_BUILDKIT=1 docker build --secret id=npmrc,src=$HOME/.npmrc . -t graph-docs"
+    "docker:build": "DOCKER_BUILDKIT=1 docker build --secret id=npmrc,src=$HOME/.npmrc . -t graph-docs",
+    "docker:up": "docker run --rm -it -p 5000:80 -v $(pwd)/nginx.conf:/etc/nginx/nginx.conf graph-docs"
   },
   "dependencies": {
     "@docusaurus/core": "^2.0.0-beta.1",

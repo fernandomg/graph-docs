@@ -46,11 +46,11 @@ const MobileNav = memo(({ handleCloseMenu }) => {
         <div className={styles['mobile-nav__products-list']}>
           <a href="https://studio.thegraph.com" className={styles['product-btn']}>
             Subgraph Studio
-            <img src="/img/arrow-right.svg" />
+            <img src={useBaseUrl("/img/arrow-right.svg")} />
           </a>
           <a href="https://explorer.thegraph.com" className={styles['product-btn']}>
             Graph Explorer
-            <img src="/img/arrow-right.svg" />
+            <img src={useBaseUrl("/img/arrow-right.svg")} />
           </a>
         </div>
       </div>
@@ -81,7 +81,7 @@ const Navbar = () => {
       <div className={styles.navigation}>
         <div className={styles['navigation--left']}>
           <a href="https://thegraph.com">
-            <img src="/img/graph-logo.svg" />
+            <img src={useBaseUrl("/img/graph-logo.svg")} />
           </a>
           <a href="https://thegraph.com">The Graph</a>
           <a href="https://thegraph.com/docs">Docs</a>
@@ -93,13 +93,13 @@ const Navbar = () => {
           <div className={styles['product-btn']}>
             <a href="https://studio.thegraph.com">
               Subgraph Studio
-              <img src="/img/arrow-right.svg" />
+              <img src={useBaseUrl("/img/arrow-right.svg")} />
             </a>
           </div>
           <div className={styles['product-btn']}>
             <a href="https://explorer.thegraph.com">
               Graph Explorer
-              <img src="/img/arrow-right.svg" />
+              <img src={useBaseUrl("/img/arrow-right.svg")} />
             </a>
           </div>
         </div>
@@ -107,11 +107,11 @@ const Navbar = () => {
       <div className={styles['navigation__show-mobile']}>
         <div className={styles['navigation__show-mobile--left']}>
           <a href="https://thegraph.com">
-            <img src="/img/graph-logo.svg" />
+            <img src={useBaseUrl("/img/graph-logo.svg")} />
           </a>
           <a href="https://thegraph.com">The Graph</a>
         </div>
-        <img onClick={() => setOpenMobileNav(!openMobileNav)} className="menu-icon" src="/img/menu.svg" />
+        <img onClick={() => setOpenMobileNav(!openMobileNav)} className="menu-icon" src={useBaseUrl("/img/menu.svg")} />
       </div>
       {openMobileNav ? <MobileNav handleCloseMenu={() => setOpenMobileNav(false)} /> : null}
     </nav>

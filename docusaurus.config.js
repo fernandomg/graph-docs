@@ -3,7 +3,7 @@ module.exports = {
   title: 'Graph Docs',
   tagline: 'Master The Graph',
   url: 'https://thegraph.com',
-  baseUrl: '/',
+  baseUrl: '/newdocs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -24,7 +24,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/graphprotocol/graph-docs'
+          editUrl: 'https://github.com/graphprotocol/graph-docs',
+          routeBasePath: '/'
         },
         blog: {
           showReadingTime: true,

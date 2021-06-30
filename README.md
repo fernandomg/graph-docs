@@ -22,6 +22,18 @@ yarn
 yarn start
 ```
 
+### Run a production docker container:
+
+```sh
+yarn docker:build
+yarn docker:up
+```
+
+This mounts `nginx.conf` file into the container for quick debugging.
+Stop the container using `ctrl+c` and do `docker:up` again to reload `nginx.conf` changes.
+
+App is available at http://localhost:5000
+
 ## Deploying
 
 - Staging: on any commit to the `main` branch

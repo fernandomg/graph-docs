@@ -2,6 +2,9 @@
 id: delegating
 title: Delegating
 ---
+
+import useBaseUrl from '@docusaurus/useBaseUrl';
+
 Delegators cannot be slashed for bad behavior, but there is a deposit tax on Delegators to disincentivize poor decision making that could harm the integrity of the network.
 
 ## Delegator Guide
@@ -29,7 +32,7 @@ Whenever a Delegator wants to undelegate, their tokens are subject to a 28 day u
 
 One thing to consider as well is choosing an Indexer wisely. If you choose an Indexer who was not trustworthy, or not doing a good job, you will want to undelegate, which means you will be losing a lot of opportunity to earn rewards, which can be just as bad as burning GRT.
 
-<img src="/img/Delegation-Unbonding.png" alt="Delegation unbonding" width="400" style={{ display: "block", margin: "0 auto"}} />
+<img src={useBaseUrl("/img/Delegation-Unbonding.png")} alt="Delegation unbonding" width="400" style={{ display: "block", margin: "0 auto"}} />
 
 <p class="image-caption">Note the 0.5% fee in the Delegation UI, as well as the 28 day unbonding period.</p>
 
@@ -40,7 +43,7 @@ This is an important part to understand. First let's discuss three very importan
 
 Indexing Reward Cut - The indexing reward cut is the portion of the rewards that the indexer will keep for themselves. That means, if it is set to 100%, as a delegator you will get 0 indexing rewards. If you see 80% in the UI, that means as a delegator, you will receive 20%. An important note - in the beginning of the network, Indexing Rewards will account for the majority of the rewards.
 
-<img src="/img/Indexing-Reward-Cut.png" alt="Indexing Reward Cut" width="700" style={{ display: "block", margin: "0 auto"}} />
+<img src={useBaseUrl("/img/Indexing-Reward-Cut.png")} alt="Indexing Reward Cut" width="700" style={{ display: "block", margin: "0 auto"}} />
 
 <p class="image-caption" style={{ width: "700px", margin: "16px auto 24px auto"}}>The top indexer is giving delegators 90% of the rewards. The middle one is giving delegators 20%. The bottom one is giving indexers ~83%.</p>
 
