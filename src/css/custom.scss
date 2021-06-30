@@ -332,3 +332,20 @@ nav {
 .docSidebarContainer_node_modules-\@docusaurus-theme-classic-lib-next-theme-DocPage- {
   border-right: none!important;
 }
+
+.image-caption {
+  text-align: center;
+  font-style: italic;
+  margin-top: 16px;
+  font-size: 1rem;
+}
+
+.video-container {
+  display: flex;
+}
+
+.video-iframe {
+  margin: 0 auto;
+  width: 853px;
+  height: 480px;
+}
