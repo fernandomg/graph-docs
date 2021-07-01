@@ -8,10 +8,14 @@ title: Deploy a Subgraph to the Subgraph Studio
 We are using the same CLI to deploy subgraphs to our legacy explorer and to the Subgraph Studio.Here are the commands to install graph-cli. This can be done using npm or yarn.
 
 **Install with yarn:**
-`yarn global add @graphprotocol/graph-cli`
+```bash
+yarn global add @graphprotocol/graph-cli
+```
 
 **Install with npm:**
-`npm install -g @graphprotocol/graph-cli`
+```bash
+npm install -g @graphprotocol/graph-cli
+```
 
 ## Create your Subgraph in Subgraph Studio
 
@@ -20,7 +24,9 @@ Before deploying your actual subgraph you need to create a subgraph in Subgraph 
 ## Initialize your Subgraph
 
 Once your subgraph has been created in Subgraph Studio you can initialize the subgraph code using this command:
-`graph init --studio <subgraph_slug>`
+```bash
+graph init --studio <subgraph_slug>
+```
 
 The <subgraph_slug> value can be found on your subgraph details page in Subgraph Studio:
 <img_placeholder>
