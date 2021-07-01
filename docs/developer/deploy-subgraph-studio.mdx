@@ -2,3 +2,51 @@
 id: deploy-subgraph-studio
 title: Deploy a Subgraph to the Subgraph Studio
 ---
+
+## Installing Graph CLI
+
+We are using the same CLI to deploy subgraphs to our legacy explorer and to the Subgraph Studio.Here are the commands to install graph-cli. This can be done using npm or yarn.
+
+**Install with yarn:**
+`yarn global add @graphprotocol/graph-cli`
+
+**Install with npm:**
+`npm install -g @graphprotocol/graph-cli`
+
+## Create your Subgraph in Subgraph Studio
+
+Before deploying your actual subgraph you need to create a subgraph in Subgraph Studio. We recommend you read our Studio documentation to learn more about this. 
+
+## Initialize your Subgraph
+
+Once your subgraph has been created in Subgraph Studio you can initialize the subgraph code using this command:
+`graph init --studio <subgraph_slug>`
+
+The <subgraph_slug> value can be found on your subgraph details page in Subgraph Studio:
+<img_placeholder>
+
+Doing this will generate a new folder on your local machine with some basic code to start working on your subgraph. You can then work on your subgraph to make sure it works as expected.
+
+## Graph auth
+
+Before being able to deploy your subgraph to Subgraph Studio, you need to login to your account within the CLI. To do this, you will need your deploy key that you can find on you "My Subgraphs" page or on the any subgraph details page.
+
+Here is the command that you need to use to authenticate from the CLI:
+
+```bash
+graph auth --studio <deploy_key>
+```
+
+## Deploying a Subgraph to Subgraph Studio
+
+Once you are ready, you can deploy your subgraph to Subgraph Studio (note that it won't publish them to the decentralized network, only deploy the subgraph to your Studio account where you will be able to test it).
+
+Here is the CLI command that you need to deploy your subgraph.
+
+```bash
+graph deploy --studio <subgraph_slug>
+```
+
+After running this command, the CLI will ask for a version label, you can name it however you want, you can use labels such as `0.1` and `0.2` or use letters as well such as `uniswap-v2-0.1` . Those labels will be visible in Graph Explorer and can be used by curators to decide if they want to signal on this version or not, so choose them wisely.
+
+Once deployed, you can test your subgraph in Subgraph Studio using the playground, deploy another version if needed, update the metadata, and then when you are ready publish your subgraph/new version to the Graph Explorer.
