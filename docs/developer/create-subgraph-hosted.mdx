@@ -1,9 +1,9 @@
 ---
 id: create-subgraph-hosted
-title: Create a Subgraph on the Legacy Explorer
+title: Create a Subgraph
 ---
 
-The `graph init` command can be used to set up a new subgraph project, either from an existing contract on any of the public Ethereum networks, or from an example subgraph.
+The `graph init` command can be used to set up a new subgraph project, either from an existing contract on any of the public Ethereum networks, or from an example subgraph. This command can be used to create a subgraph for the legacy explorer or for our new Subgraph Studio by passing two different options `graph init --product hosted-service` for the legacy explorer and `graph init --product subgraph-studio` for Subgraph Studio.
 
 ### From an existing contract
 
@@ -11,8 +11,10 @@ If you already have a smart contract deployed to Ethereum mainnet or one of the 
 
 The following command creates a subgraph that indexes all events of an existing contract. It attempts to fetch the contract ABI from Etherscan and falls back to requesting a local file path. If any of the optional arguments are missing, it takes you through an interactive form.
 
+**Legacy Explorer:**
 ```sh
 graph init \
+  --product hosted-service
   --from-contract <CONTRACT_ADDRESS> \
   [--network <ETHEREUM_NETWORK>] \
   [--abi <FILE>] \
@@ -22,6 +24,18 @@ graph init \
 The `<GITHUB_USER>` is your github user or organization name, `<SUBGRAPH_NAME>` is the name for your subgraph, and `<DIRECTORY>` is the optional name of the directory where graph init will put the example subgraph manifest.
 
 The `<CONTRACT_ADDRESS>` is the address of your existing contract. `<ETHEREUM_NETWORK>` is the name of the Ethereum network that the contract lives on. `<FILE>` is a local path to a contract ABI file. Both `--network` and `--abi` are optional.
+
+**Subgraph Studio:**
+```sh
+graph init \
+  --product subgraph-studio
+  --from-contract <CONTRACT_ADDRESS> \
+  [--network <ETHEREUM_NETWORK>] \
+  [--abi <FILE>] \
+  <SUBGRAPH_SLUG> [<DIRECTORY>]
+```
+
+The `<SUBGRAPH_SLUG>` is the ID of your subgraph in Subgraph Studio, it can be found on your subgraph details page.
 
 Supported networks on the Hosted Service are:
 
