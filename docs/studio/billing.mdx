@@ -12,19 +12,20 @@ Invoices are statements of payment amounts owed by a customer and are typically 
 In order to add GRT to your account, you will need to go through the following steps:
 
 1. Purchase GRT and ETH on an exchange of your choice
-2. Bridge GRT to Polygon using Matic Bridge
-3. Deposit bridged GRT to the billing contract on Polygon. The billing contract address is: __@TODO___.
+2. Send those GRT and ETH to your wallet
+3. Bridge GRT to Polygon using our UI
+4. Deposit bridged GRT to the billing contract on Polygon. The billing contract address is: [0xa382f75b375d6a07bfd1af99d4383c6e1d1c4004](https://polygonscan.com/address/0xa382f75b375d6a07bfd1af99d4383c6e1d1c4004).
 
-At the end of each week, if you’re owed more than 10 GRT, you will receive an invoice based on the query fees you have generated during this period. This invoice will be paid using GRT available in your balance. Query volume is evaluated by the API keys you own. Your balance will be updated after fees are withdrawn.
+At the end of each week, if you used your API keys, you will receive an invoice based on the query fees you have generated during this period. This invoice will be paid using GRT available in your balance. Query volume is evaluated by the API keys you own. Your balance will be updated after fees are withdrawn.
 
 ## Here’s how you go through our invoicing process:
 
 First off, there are 4 states your invoice can be in:
 
-1. Created - this is when your invoice has not been paid yet
-2. Paid
-3. Payment Failed - this is when there is not enough GRT in the billing contract
-4. Error - this is an error message that is unrelated to the payment failing
+1. Created - this is when your invoice has just been created and not been paid yet
+2. Paid - your invoice have automatically been paid using your balance in the billing contract
+3. Unpaid - this is when there is not enough GRT in your balance on the billing contract
+4. Error - there was an error processing the payment
 
 **See the diagram below for more information:**
 
