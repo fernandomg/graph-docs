@@ -11,7 +11,7 @@ const cards = Object.freeze([
     title: 'Developer',
     imageUrl: 'img/roles/developer.png',
     description: <>Create a subgraph or use existing subgraphs in a dApp.</>,
-    link: '/developer/define-subgraph-hosted'
+    link: '/developer/quick-start'
   },
   {
     title: 'Indexer',
@@ -126,7 +126,7 @@ export default function Home() {
           <p className={styles.landing__description}>
             Browse the latest developer documentation including API reference, articles, and sample code.
           </p>
-          <Link className={styles['landing__read-more']} to='https://thegraph.com/blog'>
+          <Link className={styles['landing__read-more']} to='/about/introduction'>
             <p>Read more About The Graph</p>
             <img src={useBaseUrl("/img/arrow-white.svg")} />
           </Link>
