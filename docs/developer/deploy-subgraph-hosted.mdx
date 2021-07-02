@@ -6,29 +6,28 @@ title: Deploy a Subgraph to the Legacy Explorer
 In the previous section, you learned how to write the files that make up a
 subgraph manifest, and how to install the
 [Graph CLI](https://github.com/graphprotocol/graph-cli) to generate code
-for your subgraph. It's now time to deploy the subgraph to the hosted Graph
-service.
+for your subgraph. It's now time to deploy the subgraph to the hosted service (or legacy explorer).
 
-## Create a Graph Explorer account
+## Create a Legacy Explorer account
 
 Before using the hosted service, create an account
-in The Graph Explorer. You will need a [Github](https://github.com/)
+in our Legacy Explorer. You will need a [Github](https://github.com/)
 account for that; if you don't have one, you need to create that
-first. Then, navigate to the [Explorer](https://thegraph.com/explorer/),
+first. Then, navigate to the [Legacy Explorer](https://thegraph.com/legacy-explorer/),
 click on the _'Sign up with Github'_ button and complete Github's
 authorization flow.
 
-## Store the Access Token on the Legacy Explorer
+## Store the Access Token
 
 After creating an account, navigate to your
-[dashboard](https://thegraph.com/explorer/dashboard). Copy the access token
-displayed on the dashboard and run `graph auth https://api.thegraph.com/deploy/ <ACCESS_TOKEN>`. This will store the access token on your computer. You only
+[dashboard](https://thegraph.com/legacy-explorer/dashboard). Copy the access token
+displayed on the dashboard and run `graph auth --product hosted-service <ACCESS_TOKEN>`. This will store the access token on your computer. You only
 need to do this once, or if you ever regenerate the access token.
 
 ## Create a Subgraph on the Legacy Explorer
 
 Before deploying the subgraph, you need to create it in the Graph
-Explorer. Go to the [dashboard](https://thegraph.com/explorer/dashboard)
+Explorer. Go to the [dashboard](https://thegraph.com/legacy-explorer/dashboard)
 and click on the _'Add Subgraph'_ button and fill in the information below as appropriate:
 
 **Image** - Select an image to be used as a preview image and thumbnail for the subgraph.
