@@ -1,6 +1,6 @@
 ---
 id: define-subgraph-hosted
-title: Define a Subgraph on the Hosted Service
+title: Define a Subgraph
 ---
 
 A subgraph defines which data The Graph will index from Ethereum, and how it will store it. Once deployed, it will form a part of a global graph of blockchain data.
@@ -18,12 +18,18 @@ The subgraph definition consists of a few files:
 Before you go into detail about the contents of the manifest file, you need to install the [Graph CLI](https://github.com/graphprotocol/graph-cli) which you will need to build and deploy a subgraph.
 
 
-## Install the Graph CLI on the Hosted Service
+## Install the Graph CLI
 
-The Graph CLI is written in JavaScript, and you will need to install either `yarn` or npm to use it; it is assumed that you have yarn in what follows. Detailed instructions for installing yarn can be found in the graph-cli repo
+The Graph CLI is written in JavaScript, and you will need to install either `yarn` or `npm` to use it; it is assumed that you have yarn in what follows. Detailed instructions for installing yarn can be found in the graph-cli repo
 
 Once you have `yarn`, install the Graph CLI by running
 
-```
+**Install with yarn:**
+```bash
 yarn global add @graphprotocol/graph-cli
+```
+
+**Install with npm:**
+```bash
+npm install -g @graphprotocol/graph-cli
 ```
