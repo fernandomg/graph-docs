@@ -182,6 +182,12 @@ blockquote::before {
   color: white;
 }
 
+.menu__link--sublist:after {
+  // Webkit browsers seem to be having an issue reading the following variable data.
+  // The following is pulled data from the --ifm-menu-link-sublist-icon-filter variable.
+  filter: invert(100%) sepia(94%) saturate(17%) hue-rotate(223deg) brightness(104%) contrast(98);
+}
+
 .menu__link--active {
   opacity: 1;
 }
