@@ -20,7 +20,6 @@ module.exports = {
         'developer/query-the-graph',
         'developer/assemblyscript-api',
         'developer/graphql-api',
-        'developer/versioning',
         'developer/querying'
       ],
     },
