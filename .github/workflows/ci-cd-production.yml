@@ -7,7 +7,7 @@ on:
 
 env:
   BASE_IMAGE: ghcr.io/graphprotocol/graph-docs-production
-  HEALTH_CHECK_URL: https://thegraph.com/newdocs
+  HEALTH_CHECK_URL: https://thegraph.com/docs
   APP_NAME: graph-docs
 
 jobs:

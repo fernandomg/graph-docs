@@ -3,7 +3,7 @@ module.exports = {
   title: 'Graph Docs',
   tagline: 'Master The Graph',
   url: 'https://thegraph.com',
-  baseUrl: '/newdocs/',
+  baseUrl: '/docs/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -37,4 +37,4 @@ module.exports = {
       }
     ]
   ]
-};
+}

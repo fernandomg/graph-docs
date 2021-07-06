@@ -7,7 +7,7 @@ on:
 
 env:
   BASE_IMAGE: ghcr.io/graphprotocol/graph-docs-staging
-  HEALTH_CHECK_URL: https://staging.thegraph.com/newdocs
+  HEALTH_CHECK_URL: https://staging.thegraph.com/docs
   APP_NAME: graph-docs
 
 jobs:

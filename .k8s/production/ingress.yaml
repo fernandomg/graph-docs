@@ -9,7 +9,7 @@ spec:
   - host: thegraph.com
     http:
       paths:
-      - path: /newdocs
+      - path: /docs
         backend:
           serviceName: graph-docs
           servicePort: http
