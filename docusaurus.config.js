@@ -27,10 +27,6 @@ module.exports = {
           editUrl: 'https://github.com/graphprotocol/graph-docs/tree/main/',
           routeBasePath: '/'
         },
-        blog: {
-          showReadingTime: true,
-          editUrl: 'https://github.com/graphprotocol/graph-docs'
-        },
         theme: {
           customCss: require.resolve('./src/css/custom.scss')
         }
