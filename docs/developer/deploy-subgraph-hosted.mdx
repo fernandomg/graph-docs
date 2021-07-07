@@ -178,28 +178,30 @@ performance issues or issues with the node operators.
 
 Graph Node exposes a graphql endpoint which you can query to check the status of your subgraph. On
 the hosted service, it is available at `https://api.thegraph.com/index-node/graphql`. On a local
-node it is available on port `8030` by default. The full schema for this endpoint can be found
+node it is available on port `8030/graphql` by default. The full schema for this endpoint can be found
 [here](https://github.com/graphprotocol/graph-node/blob/master/server/index-node/src/schema.graphql).
 Here is an example query that checks the status of the current version of a subgraph:
 
 ```graphql
-indexingStatusForCurrentVersion(subgraphName: "org/subgraph") {
-  synced
-  health
-  fatalError {
-    message
-    block {
-      number
-      hash
+{
+  indexingStatusForCurrentVersion(subgraphName: "org/subgraph") {
+    synced
+    health
+    fatalError {
+      message
+      block {
+        number
+        hash
+      }
+      handler
     }
-    handler
-  }
-  chains {
-    chainHeadBlock {
-      number
-    }
-    latestBlock {
-      number
+    chains {
+      chainHeadBlock {
+        number
+      }
+      latestBlock {
+        number
+      }
     }
   }
 }
