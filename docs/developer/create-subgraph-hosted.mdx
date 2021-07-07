@@ -169,7 +169,7 @@ The ABI file(s) must match your contract(s). There are a few ways to obtain ABI 
 
 ## The GraphQL Schema
 
-The schema for your subgraph is in the file `schema.graphql`. GraphQL schemas are defined using the GraphQL interface definition language. If you've never written a GraphQL schema, it is recommended that you check out this primer on the GraphQL type system. Reference documentation for GraphQL schemas can be found in the [GraphQL API](https://thegraph.com/docs/graphql-api) section.
+The schema for your subgraph is in the file `schema.graphql`. GraphQL schemas are defined using the GraphQL interface definition language. If you've never written a GraphQL schema, it is recommended that you check out this primer on the GraphQL type system. Reference documentation for GraphQL schemas can be found in the [GraphQL API](/developer/graphql-api) section.
 
 ## Defining Entities
 
@@ -424,7 +424,7 @@ type Band @entity {
 }
 ```
 
-The example `bandSearch` field can be used in queries to filter `Band` entities based on the text documents in the `name`, `description`, and `bio` fields. Jump to [GraphQL API - Queries](https://thegraph.com/docs/graphql-api#queries) for a description of the Fulltext search API and for more example usage.
+The example `bandSearch` field can be used in queries to filter `Band` entities based on the text documents in the `name`, `description`, and `bio` fields. Jump to [GraphQL API - Queries](/developer/graphql-api#queries) for a description of the Fulltext search API and for more example usage.
 
 ```graphql
 query {
@@ -923,7 +923,7 @@ Given such IPFS hashes, subgraphs can read the corresponding files from IPFS
 using `ipfs.cat` and `ipfs.map`. To do this reliably, however, it is required
 that these files are pinned on the IPFS node that the Graph Node indexing the
 subgraph connects to. In the case of the [hosted
-service](https://thegraph.com/explorer/), this is
+service](https://thegraph.com/legacy-explorer), this is
 [https://api.thegraph.com/ipfs/](https://api.thegraph.com/ipfs/).
 
 In order to make this easy for subgraph developers, The Graph team wrote a tool
