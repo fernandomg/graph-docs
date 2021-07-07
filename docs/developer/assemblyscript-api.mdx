@@ -617,9 +617,9 @@ let data = ipfs.cat(path)
 retrieved over the IPFS network before the request times out, it will return
 `null`. Due to this, it's always worth checking the result for `null`. To ensure
 that files can be retrieved, they have to be pinned to the IPFS node that Graph
-Node connects to. On the [hosted service](https://thegraph.com/explorer/), this
+Node connects to. On the [hosted service](https://thegraph.com/legacy-explorer), this
 is [https://api.thegraph.com/ipfs/](https://api.thegraph.com/ipfs). See the
-[IPFS pinning](/developer/define-subgraph-hosted#ipfs-pinning) section for more information.
+[IPFS pinning](/developer/create-subgraph-hosted#ipfs-pinning) section for more information.
 
 It is also possible to process larger files in a streaming fashion with
 `ipfs.map`. The function expects the hash or path for an IPFS file, the name of
