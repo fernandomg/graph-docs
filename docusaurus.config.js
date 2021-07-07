@@ -24,7 +24,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/graphprotocol/graph-docs',
+          editUrl: 'https://github.com/graphprotocol/graph-docs/tree/main/',
           routeBasePath: '/'
         },
         blog: {
