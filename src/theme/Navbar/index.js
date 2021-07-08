@@ -91,13 +91,13 @@ const Navbar = () => {
         </div>
         <div className={styles['navigation--right']}>
           <div className={styles['product-btn']}>
-            <a href="https://studio.thegraph.com">
+            <a href="https://thegraph.com/studio/">
               Subgraph Studio
               <img src={useBaseUrl("/img/arrow-right.svg")} />
             </a>
           </div>
           <div className={styles['product-btn']}>
-            <a href="https://explorer.thegraph.com">
+            <a href="https://thegraph.com/explorer/">
               Graph Explorer
               <img src={useBaseUrl("/img/arrow-right.svg")} />
             </a>
