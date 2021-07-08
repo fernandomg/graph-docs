@@ -53,7 +53,7 @@ You’ve made it this far - congrats! Publishing your subgraph means that an IPF
 
 Remember, while you’re going through your publishing flow, you’ll be able to push to either mainnet or Rinkeby, the testnet we support. If you’re a first time subgraph developer, we highly suggest you start with publishing to Rinkeby, which is free to do. This will allow you to see how the subgraph will work in The Graph Explorer and will allow you to test curation elements.
 
-You’ll only be able to query data from the mainnet (even if your subgraph was published to a testnet) because only subgraphs that are querying mainnet data can be published to the network. This is due to indexers needing to submit Proof of Indexing records which is required to be submitted as of a specific block hash, so if you publish to Rinkeby, it’d be impossible to know the block hash for it on mainnet ([more details on Indexing here](/indexing)). Because publishing a subgraph is an action taken on-chain, remember that the transaction can take up to a few minutes to go through. Any address you use to publish the contract will be the only one able to publish future versions. Choose wisely!
+You’ll only be able to index data from mainnet (even if your subgraph was published to a testnet) because only subgraphs that are indexing mainnet data can be published to the network. This is because indexers need to submit mandatory Proof of Indexing records as of a specific block hash. Because publishing a subgraph is an action taken on-chain, remember that the transaction can take up to a few minutes to go through. Any address you use to publish the contract will be the only one able to publish future versions. Choose wisely!
 
 **Now that you’ve published your subgraph, let’s get into how you’ll manage them on a regular basis.** Note that you cannot publish your subgraph to the network if it has failed syncing. This is usually because the subgraph has bugs - the logs will tell you where those issues exist!
 
@@ -106,6 +106,6 @@ The Studio will list out existing API keys, which will give you the ability to m
 
 ## How to Manage your Subgraphs
 
-API keys aside, you’ll have many tools at your disposal to manage your subgraphs. The **filter** function will allow you to filter subgraphs by their **status** and **category**.
+API keys aside, you’ll have many tools at your disposal to manage your subgraphs. You can organize your subgraphs by their **status** and **category**.
 - The **Status** tag allows you to pick between a variety of tags including `<created>`, `<deployed>`, `<published>`, `<archived>`, etc.
 - Meanwhile, **Category** allows you to designate what category your subgraph falls into. Options include `<DeFi>`, `<NFTs>`, `<Governance>`, etc.
