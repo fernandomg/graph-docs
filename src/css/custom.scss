@@ -112,10 +112,32 @@ table {
   margin: 12px 8px;
 }
 
+// Sibling selector is used to ensure we don't target child menus
+.menu__button + .menu__list {
+  // Select the 2nd to last child
+  > .menu__list-item:nth-last-child(2) {
+    margin-top: 38px;
+    position: relative;
+
+    &:before {
+      background-color: rgba(255, 255, 255, 0.08);
+      content: "";
+      display: block;
+      height: 1px;
+      // left value is padding value to ensure divider lines up with content
+      left: 16px;
+      opacity: 1;
+      position: absolute;
+      top: -18px;
+      width: 175px;
+    }
+  }
+}
+
 .menu__list-item {
   font-family: EuclidCircular;
   font-size: 0.9rem;
-  margin-top: 24px;
+  margin-top: 26px;
 }
 
 .menu__list-item .menu__list-item {
@@ -182,8 +204,9 @@ blockquote::before {
 }
 
 .menu__link {
-  opacity: 0.64;
   color: white;
+  line-height: 1.5;
+  opacity: 0.64;
 }
 
 .menu__link--sublist:after {
