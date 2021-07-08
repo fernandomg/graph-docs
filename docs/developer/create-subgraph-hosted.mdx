@@ -14,6 +14,7 @@ If you already have a smart contract deployed to Ethereum mainnet or one of the 
 The following command creates a subgraph that indexes all events of an existing contract. It attempts to fetch the contract ABI from Etherscan and falls back to requesting a local file path. If any of the optional arguments are missing, it takes you through an interactive form.
 
 **Legacy Explorer:**
+
 ```sh
 graph init \
   --product hosted-service
@@ -27,8 +28,8 @@ The `<GITHUB_USER>` is your github user or organization name, `<SUBGRAPH_NAME>` 
 
 The `<CONTRACT_ADDRESS>` is the address of your existing contract. `<ETHEREUM_NETWORK>` is the name of the Ethereum network that the contract lives on. `<FILE>` is a local path to a contract ABI file. Both `--network` and `--abi` are optional.
 
-
 **Subgraph Studio:**
+
 ```sh
 graph init \
   --product subgraph-studio
@@ -41,7 +42,12 @@ graph init \
 The `<SUBGRAPH_SLUG>` is the ID of your subgraph in Subgraph Studio, it can be found on your subgraph details page.
 
 **Supported Networks:**
-Supported networks on the Hosted Service are:
+
+The Graph Network supports subgraphs indexing mainnet Ethereum:
+
+- `mainnet`
+
+Additional networks are supported on the Hosted Service:
 
 - `mainnet`
 - `kovan`
@@ -66,18 +72,18 @@ Supported networks on the Hosted Service are:
 - `arbitrum-one`
 - `arbitrum-rinkeby`
 
-
 ### From an example subgraph
 
 The second mode `graph init` supports is creating a new project from an example subgraph. The following command does this:
 
 **Legacy Explorer:**
+
 ```
 graph init --from-example --product hosted-service <GITHUB_USER>/<SUBGRAPH_NAME> [<DIRECTORY>]
 ```
 
-
 **Subgraph Studio:**
+
 ```
 graph init --from-example --product subgraph-studio <SUBGRAPH_SLUG> [<DIRECTORY>]
 ```
@@ -147,7 +153,7 @@ The important entries to update for the manifest are:
 
 - `dataSources.mapping.callHandlers`: lists the smart contract functions this subgraph reacts to and handlers in the mapping that transform the inputs and outputs to function calls into entities in the store.
 
-- `dataSources.mapping.blockHandlers`: lists the blocks this subgraph reacts to and handlers in the mapping to run when a block is appended to the chain. Without a filter, the block handler will be run every block. An optional filter can be provided with the following kinds: call`. A `call` filter will run the handler if the block contains at least one call to the data source contract.
+- `dataSources.mapping.blockHandlers`: lists the blocks this subgraph reacts to and handlers in the mapping to run when a block is appended to the chain. Without a filter, the block handler will be run every block. An optional filter can be provided with the following kinds: call`. A`call` filter will run the handler if the block contains at least one call to the data source contract.
 
 A single subgraph can index data from multiple smart contracts. Add an entry for each contract from which data needs to be indexed to the `dataSources` array.
 
@@ -227,15 +233,15 @@ Each entity must have an `id` field, which is of type `ID!` (string). The `id` f
 
 We support the following scalars in our GraphQL API:
 
-| __Type__      | __Description__ |
-| ----------- | ----------- |
-| `Bytes`      | Byte array, represented as a hexadecimal string. Commonly used for Ethereum hashes and addresses.        |
-| `ID`   | Stored as a `string`.        |
-| `String`   | Scalar for `string` values. Null characters are not supported and are automatically removed.        |
-| `Boolean`   | Scalar for `boolean` values.        |
-| `Int`   | The GraphQL spec defines `Int` to have size of 32 bytes.        |
-| `BitInt`   | Large integers. Used for Ethereum's `uint32`, `int64`, `uint64`, ..., `uint256` types. Note: Everything below `uint32`, such as `int32`, `uint24` or `int8` is represented as `i32`.        |
-| `BigDecimal`   | `BigDecimal` High precision decimals represented as a signficand and an exponent. The exponent range is from −6143 to +6144. Rounded to 34 significant digits.        |
+| **Type**     | **Description**                                                                                                                                                                      |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Bytes`      | Byte array, represented as a hexadecimal string. Commonly used for Ethereum hashes and addresses.                                                                                    |
+| `ID`         | Stored as a `string`.                                                                                                                                                                |
+| `String`     | Scalar for `string` values. Null characters are not supported and are automatically removed.                                                                                         |
+| `Boolean`    | Scalar for `boolean` values.                                                                                                                                                         |
+| `Int`        | The GraphQL spec defines `Int` to have size of 32 bytes.                                                                                                                             |
+| `BitInt`     | Large integers. Used for Ethereum's `uint32`, `int64`, `uint64`, ..., `uint256` types. Note: Everything below `uint32`, such as `int32`, `uint24` or `int8` is represented as `i32`. |
+| `BigDecimal` | `BigDecimal` High precision decimals represented as a signficand and an exponent. The exponent range is from −6143 to +6144. Rounded to 34 significant digits.                       |
 
 #### Enums
 
@@ -352,7 +358,7 @@ type User @entity {
 }
 
 type UserOrganization @entity {
-  id: ID!   # Set to `${user.id}-${organization.id}`
+  id: ID! # Set to `${user.id}-${organization.id}`
   user: User!
   organization: Organization!
 }
@@ -363,7 +369,8 @@ This approach requires that queries descend into one additional level to retriev
 ```graphql
 query usersWithOrganizations {
   users {
-    organizations { # this is a UserOrganization entity
+    organizations {
+      # this is a UserOrganization entity
       organization {
         name
       }
@@ -397,30 +404,21 @@ To add a fulltext query, include a `_Schema_` type with a fulltext directive in 
 ```graphql
 type _Schema_
   @fulltext(
-    name: "bandSearch",
+    name: "bandSearch"
     language: en
-    algorithm: rank,
-    include: [
-      {
-        entity: "Band",
-        fields: [
-          { name: "name" },
-          { name: "description" },
-          { name: "bio" },
-        ]
-      }
-    ]
+    algorithm: rank
+    include: [{ entity: "Band", fields: [{ name: "name" }, { name: "description" }, { name: "bio" }] }]
   )
 
 type Band @entity {
-    id: ID!
-    name: String!
-    description: String!
-    bio: String
-    wallet: Address
-    labels: [Label!]!
-    discography: [Album!]!
-    members: [Musician!]!
+  id: ID!
+  name: String!
+  description: String!
+  bio: String
+  wallet: Address
+  labels: [Label!]!
+  discography: [Album!]!
+  members: [Musician!]!
 }
 ```
 
@@ -443,33 +441,33 @@ Choosing a different language will have a definitive, though sometimes subtle, e
 
 Supported language dictionaries:
 
-| Code | Dictionary |
-| ----------- | ----------- |
-| simple | General |
-| da | Danish |
-| nl | Dutch |
-| en | English |
-| fi | Finnish |
-| fr | French |
-| de | German |
-| hu | Hungarian |
-| it | Italian |
-| no | Norwegian |
-| pt | Portugese |
-| ro | Romanian |
-| ru | Russian |
-| es | Spanish |
-| sv | Swedish |
-| tr | Turkish |
+| Code   | Dictionary |
+| ------ | ---------- |
+| simple | General    |
+| da     | Danish     |
+| nl     | Dutch      |
+| en     | English    |
+| fi     | Finnish    |
+| fr     | French     |
+| de     | German     |
+| hu     | Hungarian  |
+| it     | Italian    |
+| no     | Norwegian  |
+| pt     | Portugese  |
+| ro     | Romanian   |
+| ru     | Russian    |
+| es     | Spanish    |
+| sv     | Swedish    |
+| tr     | Turkish    |
 
 ### Ranking Algorithms
 
 Supported algorithms for ordering results:
 
-| Algorithm | Description |
-| ----------- | ----------- |
-| rank | Use the match quality (0-1) of the fulltext query to order the results. |
-| proximityRank | Similar to rank but also includes the proximity of the matches. |
+| Algorithm     | Description                                                             |
+| ------------- | ----------------------------------------------------------------------- |
+| rank          | Use the match quality (0-1) of the fulltext query to order the results. |
+| proximityRank | Similar to rank but also includes the proximity of the matches.         |
 
 ## Writing Mappings
 
@@ -480,27 +478,27 @@ For each event handler that is defined in `subgraph.yaml` under `mapping.eventHa
 In the example subgraph, `src/mapping.ts` contains handlers for the `NewGravatar` and `UpdatedGravatar` events:
 
 ```javascript
-import { NewGravatar, UpdatedGravatar } from '../generated/Gravity/Gravity'
-import { Gravatar } from '../generated/schema'
+import { NewGravatar, UpdatedGravatar } from '../generated/Gravity/Gravity';
+import { Gravatar } from '../generated/schema';
 
 export function handleNewGravatar(event: NewGravatar): void {
-  let gravatar = new Gravatar(event.params.id.toHex())
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+  let gravatar = new Gravatar(event.params.id.toHex());
+  gravatar.owner = event.params.owner;
+  gravatar.displayName = event.params.displayName;
+  gravatar.imageUrl = event.params.imageUrl;
+  gravatar.save();
 }
 
 export function handleUpdatedGravatar(event: UpdatedGravatar): void {
-  let id = event.params.id.toHex()
-  let gravatar = Gravatar.load(id)
+  let id = event.params.id.toHex();
+  let gravatar = Gravatar.load(id);
   if (gravatar == null) {
-    gravatar = new Gravatar(id)
+    gravatar = new Gravatar(id);
   }
-  gravatar.owner = event.params.owner
-  gravatar.displayName = event.params.displayName
-  gravatar.imageUrl = event.params.imageUrl
-  gravatar.save()
+  gravatar.owner = event.params.owner;
+  gravatar.displayName = event.params.displayName;
+  gravatar.imageUrl = event.params.imageUrl;
+  gravatar.save();
 }
 ```
 
@@ -517,7 +515,6 @@ Every entity has to have an `id` that is unique among all entities of the same t
 - `event.transaction.hash.toHex() + "-" + event.logIndex.toString()`
 
 We provide the [Graph Typescript Library](https://github.com/graphprotocol/graph-ts) which contains utilies for interacting with the Graph Node store and conveniences for handling smart contract data and entities. You can use this library in your mappings by importing `@graphprotocol/graph-ts` in `mapping.ts`.
-
 
 ## Code Generation
 
@@ -547,14 +544,14 @@ import {
   Gravity,
   // The events classes:
   NewGravatar,
-  UpdatedGravatar,
-} from '../generated/Gravity/Gravity'
+  UpdatedGravatar
+} from '../generated/Gravity/Gravity';
 ```
 
 In addition to this, one class is generated for each entity type in the subgraph's GraphQL schema. These classes provide type-safe entity loading, read and write access to entity fields as well as a `save()` method to write entities to store. All entity classes are written to `<OUTPUT_DIR>/schema.ts`, allowing mappings to import them with
 
 ```javascript
-import { Gravatar } from '../generated/schema'
+import { Gravatar } from '../generated/schema';
 ```
 
 > **Note:** The code generation must be performed again after every change to the GraphQL schema or the ABIs included in the manifest. It must also be performed at least once before building or deploying the subgraph.
@@ -570,13 +567,13 @@ the Gravity contract exposes the `gravatarToOwner` method. This code would be
 able to handle a revert in that method:
 
 ```typescript
-  let gravity = Gravity.bind(event.address)
-  let callResult = gravity.try_gravatarToOwner(gravatar)
-  if (callResult.reverted) {
-    log.info("getGravatar reverted", [])
-  } else {
-    let owner = callResult.value
-  }
+let gravity = Gravity.bind(event.address);
+let callResult = gravity.try_gravatarToOwner(gravatar);
+if (callResult.reverted) {
+  log.info('getGravatar reverted', []);
+} else {
+  let owner = callResult.value;
+}
 ```
 
 Note that a Graph node connected to a Geth or Infura client may not detect all
@@ -675,12 +672,12 @@ the `Exchange.create(address)` method on it to start indexing the new
 exchange contract.
 
 ```typescript
-import { Exchange } from '../generated/templates'
+import { Exchange } from '../generated/templates';
 
 export function handleNewExchange(event: NewExchange): void {
   // Start indexing the exchange; `event.params.exchange` is the
   // address of the new exchange contract
-  Exchange.create(event.params.exchange)
+  Exchange.create(event.params.exchange);
 }
 ```
 
@@ -700,22 +697,22 @@ trading pair, which is included in the `NewExchange` event. That information
 can be passed into the instantiated data source, like so:
 
 ```typescript
-import { Exchange } from '../generated/templates'
+import { Exchange } from '../generated/templates';
 
 export function handleNewExchange(event: NewExchange): void {
-  let context = new DataSourceContext()
-  context.setString("tradingPair", event.params.tradingPair)
-  Exchange.createWithContext(event.params.exchange, context)
+  let context = new DataSourceContext();
+  context.setString('tradingPair', event.params.tradingPair);
+  Exchange.createWithContext(event.params.exchange, context);
 }
 ```
 
 Inside a mapping of the `Exchange` template, the context can then be accessed:
 
 ```typescript
-import { dataSource } from "@graphprotocol/graph-ts"
+import { dataSource } from '@graphprotocol/graph-ts';
 
-let context = dataSource.context()
-let tradingPair = context.getString("tradingPair")
+let context = dataSource.context();
+let tradingPair = context.getString('tradingPair');
 ```
 
 There are setters and getters like `setString` and `getString` for all value
@@ -729,7 +726,7 @@ allows the data source to skip potentially millions of blocks that are irrelevan
 Typically, a subgraph developer will set `startBlock` to the block in which
 the smart contract of the data source was created.
 
- ```yaml
+```yaml
 dataSources:
   - kind: ethereum/contract
     name: ExampleSource
@@ -753,13 +750,13 @@ dataSources:
           handler: handleNewEvent
 ```
 
- > **Note:** The contract creation block can be quickly looked up on
- > Etherscan:
- > 1. Search for the contract by entering its address in the search bar.
- > 2. Click on the creation transaction hash in the `Contract Creator` section.
- > 3. Load the transaction details page where you'll find the start block
- > for that contract.
-
+> **Note:** The contract creation block can be quickly looked up on
+> Etherscan:
+>
+> 1.  Search for the contract by entering its address in the search bar.
+> 2.  Click on the creation transaction hash in the `Contract Creator` section.
+> 3.  Load the transaction details page where you'll find the start block
+>     for that contract.
 
 ## Call Handlers
 
@@ -819,15 +816,15 @@ a handler for when the `createGravatar` function is called and receives a
 `CreateGravatarCall` parameter as an argument:
 
 ```typescript
-import { CreateGravatarCall } from '../generated/Gravity/Gravity'
-import { Transaction } from '../generated/schema'
+import { CreateGravatarCall } from '../generated/Gravity/Gravity';
+import { Transaction } from '../generated/schema';
 
 export function handleCreateGravatar(call: CreateGravatarCall): void {
-  let id = call.transaction.hash.toHex()
-  let transaction = new Transaction(id)
-  transaction.displayName = call.inputs._displayName
-  transaction.imageUrl = call.inputs._imageUrl
-  transaction.save()
+  let id = call.transaction.hash.toHex();
+  let transaction = new Transaction(id);
+  transaction.displayName = call.inputs._displayName;
+  transaction.imageUrl = call.inputs._imageUrl;
+  transaction.save();
 }
 ```
 
@@ -889,12 +886,12 @@ mapping functions for events, this function can access existing subgraph
 entities in the store, call smart contracts and create or update entities.
 
 ```typescript
-import { ethereum } from '@graphprotocol/graph-ts'
+import { ethereum } from '@graphprotocol/graph-ts';
 
 export function handleBlock(block: ethereum.Block): void {
-  let id = block.hash.toHex()
-  let entity = new Block(id)
-  entity.save()
+  let id = block.hash.toHex();
+  let entity = new Block(id);
+  entity.save();
 }
 ```
 
@@ -906,14 +903,16 @@ providing the topic 0 of the event, as in the example:
 ```yaml
 eventHandlers:
   - event: LogNote(bytes4,address,bytes32,bytes32,uint256,bytes)
-    topic0: "0xbaa8529c00000000000000000000000000000000000000000000000000000000"
+    topic0: '0xbaa8529c00000000000000000000000000000000000000000000000000000000'
     handler: handleGive
 ```
 
 An event will only be triggered when both the signature and topic 0 match. By
 default, `topic0` is equal to the hash of the event signature.
 
-## IPFS Pinning
+## Experimental features
+
+### IPFS Pinning
 
 A common use case for combining IPFS with Ethereum is to store data on IPFS that
 would be too expensive to maintain on chain, and reference the IPFS hash in
@@ -926,11 +925,13 @@ subgraph connects to. In the case of the [hosted
 service](https://thegraph.com/legacy-explorer), this is
 [https://api.thegraph.com/ipfs/](https://api.thegraph.com/ipfs/).
 
+> **Note:** The Graph Network does not yet support `ipfs.cat` and `ipfs.map`, and developers should not deploy subgraphs using that functionality to the network via the Studio.
+
 In order to make this easy for subgraph developers, The Graph team wrote a tool
 for transfering files from one IPFS node to another, called
 [ipfs-sync](https://github.com/graphprotocol/ipfs-sync).
 
-### Feature: Non-fatal errors
+### Non-fatal errors
 
 Indexing errors on already synced subgraphs will, by default, cause the subgraph to fail and stop
 syncing. Subgraphs can alternatively be configured to continue syncing in the presence of errors, by
@@ -938,6 +939,8 @@ ignoring the changes made by the handler which provoked the error. This gives su
 to correct their subgraphs while queries continue to be served against the latest block, though the
 results will possibly be inconsistent due to the bug that caused the error. Note that some errors
 are still always fatal, to be non-fatal the error must be known to be deterministic.
+
+> **Note:** The Graph Network does not yet support non-fatal errors, and developers should not deploy subgraphs using that functionality to the network via the Studio.
 
 Enabling non-fatal errors requires setting the following feature flag on the subgraph manifest:
 
@@ -980,3 +983,52 @@ message `"indexing_error"`, as in this example response:
     }
 ]
 ```
+
+### Grafting onto Existing Subgraphs
+
+When a subgraph is first deployed, it starts indexing events at the genesis block
+of the corresponding chain (or at the `startBlock` defined with each data source)
+In some circumstances, it is beneficial to reuse the data from an existing
+subgraph and start indexing at a much later block. This mode of indexing is
+called _Grafting_. Grafting is, for example, useful during development to get
+past simple errors in the mappings quickly, or to temporarily get an existing
+subgraph working again after it has failed.
+
+> **Note:** Grafting requires that the Indexer has indexed the base subgraph. It is not recommended on The Graph Network at this time, and developers should not deploy subgraphs using that functionality to the network via the Studio.
+
+A subgraph is grafted onto a base subgraph when the subgraph manifest in
+`subgraph.yaml` contains a `graft` block at the toplevel:
+
+```yaml
+description: ...
+graft:
+  base: Qm... # Subgraph ID of base subgraph
+  block: 7345624 # Block number
+```
+
+When a subgraph whose manifest contains a `graft` block is deployed, Graph Node
+will copy the data of the `base` subgraph up to and including the given `block`
+and then continue indexing the new subgraph from that block on. The base subgraph
+must exist on the target Graph Node instance and must have indexed up to at least
+the given block. Because of this restriction, grafting should only be used during
+development or during an emergency to speed up producing an equivalent non-grafted
+subgraph.
+
+Because grafting copies rather than indexes base data it is much quicker in
+getting the subgraph to the desired block than indexing from scratch, though
+the initial data copy can still take several hours for very large subgraphs.
+While the grafted subgraph is being initialized, the Graph Node will log
+information about the entity types that have already been copied.
+
+The grafted subgraph can use a GraphQL schema that is not identical to the one
+of the base subgraph, but merely compatible with it. It has to be a valid
+subgraph schema in its own right but may deviate from the base subgraph's
+schema in the following ways:
+
+- It adds or removes entity types
+- It removes attributes from entity types
+- It adds nullable attributes to entity types
+- It turns non-nullable attributes into nullable attributes
+- It adds values to enums
+- It adds or removes interfaces
+- It changes for which entity types an interface is implemented

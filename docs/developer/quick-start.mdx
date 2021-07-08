@@ -36,7 +36,7 @@ $ ganache-cli -h 0.0.0.0
 
 in the same terminal. It will create 10 test accounts with some Ether on all of them. Note that `-h 0.0.0.0` is necessary for Ganache to be accessible from within Docker and from other machines. By default, Ganache only binds to 127.0.0.1, which can only be accessed from the host machine that Ganache runs on.
 
-__NOTE:__ Using ganache for subgraph testing can lead to unexpected consequences. Ganache will take snapshots of the blockchain state, and revert the chain to a clean deployment of the contracts while running tests. If your truffle tests are set up like this, the graph node will seize, since it is not expecting the blockchain to roll back its state. Also, if you keep deploying new instances of your contracts within your tests, the contract addresses will not match with the contract address from the deployer, and thus you will not have 1 single address to add to the `subgraph.yaml` manifest. It is recommended for users to fully understand how ganache is running tests, otherwise it will appear the graph node is not running handlers.
+**NOTE:** Using ganache for subgraph testing can lead to unexpected consequences. Ganache will take snapshots of the blockchain state, and revert the chain to a clean deployment of the contracts while running tests. If your truffle tests are set up like this, the graph node will seize, since it is not expecting the blockchain to roll back its state. Also, if you keep deploying new instances of your contracts within your tests, the contract addresses will not match with the contract address from the deployer, and thus you will not have 1 single address to add to the `subgraph.yaml` manifest. It is recommended for users to fully understand how ganache is running tests, otherwise it will appear the graph node is not running handlers.
 
 ### 2. Run a local Graph Node
 
@@ -82,7 +82,6 @@ $ yarn global add @graphprotocol/graph-cli
 
 2. Make sure you are inside of the folder in which you want to create a subgraph on your machine, and run:
 
-
 ```sh
 $ graph init --from-example <GITHUB_USERNAME>/<SUBGRAPH_NAME> [<DIRECTORY>]
 ```
@@ -106,7 +105,7 @@ $ truffle migrate
 
 in the root directory of the subgraph from step 3. This will compile the `GravatarRegistry` smart contract and deploy it to Ganache. It will also execute a couple of transactions against the contract so that there is data to index.
 
-__NOTE:__ `truffle migrate` will print the address the GravatarRegistry contract is deployed to. Make sure to copy this contract, you will need it later.
+**NOTE:** `truffle migrate` will print the address the GravatarRegistry contract is deployed to. Make sure to copy this contract, you will need it later.
 
 ### 5. Deploy the subgraph to the local Graph Node
 
@@ -187,7 +186,7 @@ $ graph init --from-example <GITHUB_USERNAME>/<SUBGRAPH_NAME> <DIRECTORY>
 - `<DIRECTORY>` is optional. It's the name of the directory that your subgraph is created in. Defaults to `<SUBGRAPH_NAME>`.
 - The previous command will print instructions on how to authenticate with the Hosted Service and how to prepare and deploy the subgraph. Simply follow these next.
 
-__NOTE:__ If you are creating a subgraph on behalf of your organization, you need to be an admin to get an access token. If you are a only a member, contact your admin.
+**NOTE:** If you are creating a subgraph on behalf of your organization, you need to be an admin to get an access token. If you are a only a member, contact your admin.
 
 You can now watch your subgraph indexing and interact with it through a GraphQL playground in the Graph Explorer at
 
@@ -227,6 +226,7 @@ It is not possible to delete subgraphs once they are created.
 No. Once a subgraph is created, the name cannot be changed. Make sure to think of this carefully before you create your subgraph so it is easily searchable and identifiable by other dApps.
 
 ### 3. Can I change the GitHub account associated with my subgraph?
+
 No. Once a subgraph is created, the associated GitHub account cannot be changed. Make sure to think of this carefully before you create your subgraph.
 
 ### 4. Am I still able to create a subgraph if my smart contracts don't have events?
@@ -240,6 +240,7 @@ If the contracts you are working with do not contain events, your subgraph can u
 You will need separate names for multiple networks. While you can't have different subgraphs under the same name, there are convenient ways of having a single codebase for multiple networks. Find more on this in our documentation: [Redeploying a Subgraph](/developer/deploy-subgraph-hosted#redeploying-a-subgraph)
 
 ### 6. How are templates different from data sources?
+
 Templates allow you to create data sources on the fly, while your subgraph is indexing. It might be the case that your contract will spawn new contracts as people interact with it, and since you know the shape of those contracts (ABI, events, etc) up front you can define how you want to index them in a template and when they are spawned your subgraph will create a dynamic data source by supplying the contract address.
 
 Check out the "Instantiating a data source template" section on: [Data Source Templates](/developer/create-subgraph-hosted#data-source-templates).
@@ -252,7 +253,7 @@ You can run the following command:
 docker pull graphprotocol/graph-node:latest
 ```
 
-__NOTE:__ docker / docker-compose will always use whatever graph-node version was pulled the first time you ran it, so it is important to do this to make sure you are up to date with the latest version of graph-node.
+**NOTE:** docker / docker-compose will always use whatever graph-node version was pulled the first time you ran it, so it is important to do this to make sure you are up to date with the latest version of graph-node.
 
 ### 8. How do I call a contract function or access a public state variable from my subgraph mappings?
 
@@ -281,10 +282,10 @@ Within a subgraph, the events are always processed in the order they appear in t
 Yes. You can do this by importing `graph-ts` as per the example below:
 
 ```javascript
-import { dataSource } from '@graphprotocol/graph-ts'
+import { dataSource } from '@graphprotocol/graph-ts';
 
-dataSource.network()
-dataSource.address()
+dataSource.network();
+dataSource.address();
 ```
 
 ### 14. Do you support block and call handlers on Rinkeby?
@@ -313,7 +314,13 @@ curl -X POST -d '{ "query": "{indexingStatusForCurrentVersion(subgraphName: \"or
 
 ### 19. What networks are supported by The Graph?
 
-The graph-node supports any Ethereum-compatible JSON RPC API chain. In the Hosted service, the following networks are supported:
+The graph-node supports any EVM-compatible JSON RPC API chain.
+
+The Graph Network supports subgraphs indexing mainnet Ethereum:
+
+- `mainnet`
+
+In the Hosted service, the following networks are supported:
 
 - Ethereum mainnet
 - Kovan
