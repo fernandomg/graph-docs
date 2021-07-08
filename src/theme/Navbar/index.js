@@ -44,11 +44,11 @@ const MobileNav = memo(({ handleCloseMenu }) => {
           <a href="https://thegraph.com/jobs">Jobs</a>
         </div>
         <div className={styles['mobile-nav__products-list']}>
-          <a href="https://studio.thegraph.com" className={styles['product-btn']}>
+          <a href="https://thegraph.com/studio" className={styles['product-btn']}>
             Subgraph Studio
             <img src={useBaseUrl("/img/arrow-right.svg")} />
           </a>
-          <a href="https://explorer.thegraph.com" className={styles['product-btn']}>
+          <a href="https://thegraph.com/explorer" className={styles['product-btn']}>
             Graph Explorer
             <img src={useBaseUrl("/img/arrow-right.svg")} />
           </a>
