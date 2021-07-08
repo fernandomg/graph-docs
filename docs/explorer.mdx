@@ -5,7 +5,7 @@ title: The Graph Explorer
 
 import useBaseUrl from '@docusaurus/useBaseUrl';
 
-Welcome to the Graph Explorer, or as we like to call it, your decentralized portal into the world of subgraphs and network data. 👩🏽‍🚀 The Graph Explorer consists of multiple parts where you can interact with other subgraph developers, dApp developers, Curators, Indexers, and Delegators. For a general overview of the Graph Explorer, check out the video below (or keep reading!).
+Welcome to The Graph Explorer, or as we like to call it, your decentralized portal into the world of subgraphs and network data. 👩🏽‍🚀 The Graph Explorer consists of multiple parts where you can interact with other Subgraph developers, dApp developers, Curators, Indexers, and Delegators. For a general overview of the Graph Explorer, check out the video below (or keep reading!). 
 
 <figure class="video-container">
   <iframe class="video-iframe" src="https://www.youtube.com/embed/u224xf7rEBY" title="YouTube video player" frameborder ="0" allowfullscreen="true"> </iframe>
@@ -13,7 +13,7 @@ Welcome to the Graph Explorer, or as we like to call it, your decentralized port
 
 ## Subgraphs
 
-First things first, if you just finished deploying and publishing your subgraph in the Studio, the Subgraphs tab on the top of the navigation bar is the place to view your own finished subgraphs (and the subgraphs of others) on the decentralized network. Here, you’ll be able to filter for the exact subgraph you’re looking for based on date created, signal amount, or name.
+First things first, if you just finished deploying and publishing your subgraph in the Subgraph Studio, the Subgraphs tab on the top of the navigation bar is the place to view your own finished subgraphs (and the subgraphs of others) on the decentralized network. Here, you’ll be able to find the exact subgraph you’re looking for based on date created, signal amount, or name.
 
 ![Explorer Image 1](/img/Subgraphs-Explorer-Landing.png)
 
@@ -43,17 +43,17 @@ Within this tab, you’ll get a bird’s eye view of all the people that are par
 Let’s start with the Indexers. Indexers are the backbone of the protocol, being the ones that stake on subgraphs, index them, and serve queries to anyone consuming subgraphs. In the Indexers table, you’ll be able to see an Indexers’ delegation parameters, their stake, how much they have staked to each subgraph, and how much revenue they have made off of query fees and indexing rewards. Deep dives below:
 
   - Query Fee Cut - the % of the query fee rebates that the Indexer keeps when splitting with Delegators
-  - Effective Reward Cut - the indexing reward cut applied to the delegation pool. If it’s negative, it means that the indexer is giving away part of their rewards. If it’s positive, it means that the indexer is keeping some of their rewards
-  - Cooldown Remaining - the time remaining until the indexer can change the above delegation parameters. Cooldown periods are set up by indexers when they update their delegation parameters
-  - Owned - This is the indexer’s deposited stake, which may be slashed for malicious or incorrect behavior
-  - Delegated - Stake from Delegators which can be allocated by the indexer, but cannot be slashed
-  - Allocated - stake that indexers are actively allocating towards the subgraphs they are indexing
-  - Available Delegation Capacity - the amount of delegated stake the indexers can still receive before they become overdelegated.
-  - Max Delegation Capacity - the maximum amount of delegated stake the indexer can productively accept. Excess delegated stake cannot be used for allocations or rewards calculations.
+  - Effective Reward Cut - the indexing reward cut applied to the delegation pool. If it’s negative, it means that the Indexer is giving away part of their rewards. If it’s positive, it means that the Indexer is keeping some of their rewards
+  - Cooldown Remaining - the time remaining until the Indexer can change the above delegation parameters. Cooldown periods are set up by Indexers when they update their delegation parameters
+  - Owned - This is the Indexer’s deposited stake, which may be slashed for malicious or incorrect behavior
+  - Delegated - Stake from Delegators which can be allocated by the Indexer, but cannot be slashed
+  - Allocated - Stake that Indexers are actively allocating towards the subgraphs they are indexing
+  - Available Delegation Capacity - the amount of delegated stake the Indexers can still receive before they become overdelegated
+  - Max Delegation Capacity - the maximum amount of delegated stake the Indexer can productively accept. Excess delegated stake cannot be used for allocations or rewards calculations.
   - Query Fees - this is the total fees that end users have paid for queries from an Indexer over all time
-  - Indexer Rewards - this is the total indexer rewards earned by the indexer and their Delegators over all time. Indexer rewards are paid through GRT issuance.
+  - Indexer Rewards - this is the total indexer rewards earned by the Indexer and their Delegators over all time. Indexer rewards are paid through GRT issuance.
 
-Indexers can earn both query fees and indexing rewards. Functionally, this happens when network participants delegate GRT to an Indexer. This enables Indexers to receive query fees and rewards depending on their indexer parameters. Indexing parameters are set by clicking into the right hand side of the table, or by going into an Indexer’s profile and clicking the “Delegate” button.
+Indexers can earn both query fees and indexing rewards. Functionally, this happens when network participants delegate GRT to an Indexer. This enables Indexers to receive query fees and rewards depending on their Indexer parameters. Indexing parameters are set by clicking into the right hand side of the table, or by going into an Indexer’s profile and clicking the “Delegate” button.
 
 To learn more about how to become an Indexer, you can take a look at the [official documentation](/indexing) or [The Graph Academy Indexer guides.](https://thegraph.academy/delegators/choosing-indexers/)
 
@@ -69,12 +69,12 @@ Curators can be community members, data consumers, or even subgraph developers w
 
 ![Explorer Image 6](/img/Curation-Overview.png)
 
-If you want to learn more about the Curator role, you can do so by visiting the following links of [The Graph Academy](https://thegraph.academy/curators/) or the [official documentation.](/curating)
+If you want to learn more about the Curator role, you can do so by visiting the following links of [The Graph Academy](https://thegraph.academy/curators/) or [official documentation.](/curating)
 
 ### 3. Delegators
-Delegators play a key role in maintaining the security and decentralization of The Graph Network. They participate in the network by delegating (i.e., “staking”) GRT tokens to one or multiple indexers. Without Delegators, indexers are less likely to earn significant rewards and fees. Therefore, Indexers seek to attract Delegators by offering them a portion of the indexing rewards and query fees that they earn.
+Delegators play a key role in maintaining the security and decentralization of The Graph Network. They participate in the network by delegating (i.e., “staking”) GRT tokens to one or multiple indexers. Without Delegators, Indexers are less likely to earn significant rewards and fees. Therefore, Indexers seek to attract Delegators by offering them a portion of the indexing rewards and query fees that they earn.
 
-Delegators, in turn, select Indexers based on a number of different variables, such as past performance, indexing reward rates, and query fee cuts. Reputation within the community can also play a factor in this! It’s recommended to connect with the indexer/s selected via [The Graph’s Discord](https://thegraph.com/discord) or the [forum](https://forum.thegraph.com/)!
+Delegators, in turn, select Indexers based on a number of different variables, such as past performance, indexing reward rates, and query fee cuts. Reputation within the community can also play a factor in this! It’s recommended to connect with the indexers selected via [The Graph’s Discord](https://thegraph.com/discord) or [The Graph Forum](https://forum.thegraph.com/)!
 
 ![Explorer Image 7](/img/Delegation-Overview.png)
 
@@ -90,7 +90,7 @@ If you want to learn more about how to become a Delegator, look no further! All 
 
 
 ## Network
-In the Network section, you will see global KPIs as well as the ability to switch to a per-epoch basis and analyze the metrics in more detail. This network detail will give you a sense of how the network is performing over time.
+In the Network section, you will see global KPIs as well as the ability to switch to a per-epoch basis and analyze network metrics in more detail. These details will give you a sense of how the network is performing over time.
 
 ### Activity
 The activity section has all the current network metrics as well as some cumulative metrics over time. Here you can see things like:
@@ -102,8 +102,8 @@ The activity section has all the current network metrics as well as some cumulat
   - Current epoch rewards and fees
 
 A few key details that are worth mentioning:
-  - **Query fees represent the fees generated by the consumers**, and they can be claimed (or not) by the indexers after a period of at least 7 epochs (see below) after their allocations towards the subgraphs have been closed, and the data they served has been validated by the consumers.
-  - **Indexing rewards represent the amount of rewards the Indexers claimed from the network issuance during the epoch.** Although the protocol issuance is fixed, the rewards only get minted once the Indexers close their allocations towards the subgraphs they’ve been indexing. Thus the per-epoch number of rewards varies (ie. during some epochs, Indexers might’ve collectively closed allocations that have been open for many days)
+  - **Query fees represent the fees generated by the consumers**, and they can be claimed (or not) by the Indexers after a period of at least 7 epochs (see below) after their allocations towards the subgraphs have been closed and the data they served has been validated by the consumers.
+  - **Indexing rewards represent the amount of rewards the Indexers claimed from the network issuance during the epoch.** Although the protocol issuance is fixed, the rewards only get minted once the Indexers close their allocations towards the subgraphs they’ve been indexing. Thus the per-epoch number of rewards varies (ie. during some epochs, Indexers might’ve collectively closed allocations that have been open for many days).
 
 ![Explorer Image 8](/img/Network-Stats.png)
 
@@ -113,7 +113,7 @@ In the Epochs section you can analyse on a per-epoch basis, metrics such as:
   - Query fees generated and indexing rewards collected during a specific epoch
   - Epoch status, which refers to the query fee collection and distribution and can have different states:
     - The active epoch is the one in which Indexers are currently allocating stake and collecting query fees
-    - The settling epochs are the ones in which the state channels are being settled. This means that the Indexers are subject  to slashing if the consumers open disputes against them.
+    - The settling epochs are the ones in which the state channels are being settled. This means that the Indexers are subject to slashing if the consumers open disputes against them.
     - The distributing epochs are the epochs in which the state channels for the epochs are being settled and Indexers can claim their query fee rebates.
     - The finalized epochs are the epochs that have no query fee rebates left to claim by the Indexers, thus being finalized.
 
@@ -128,12 +128,12 @@ This is where you can see any current actions you took. This is also where you c
 ![Explorer Image 10](/img/Profile-Overview.png)
 
 ### Subgraphs Tab
-If you click into the Subgraphs tab, you’ll see your published subgraphs. This will not include any subgraphs deployed with the CLI for testing purposes – they will only show up when they are published to the decentralized network.
+If you click into the Subgraphs tab, you’ll see your published subgraphs. This will not include any subgraphs deployed with the CLI for testing purposes – subgraphs will only show up when they are published to the decentralized network.
 
 ![Explorer Image 11](/img/Subgraphs-Overview.png)
 
 ### Indexing Tab
-If you click into the Indexing tab, you’ll find a table with all the active and historical allocations towards the subgraphs, as well as charts that you can analyse and see your past performance as an Indexer.
+If you click into the Indexing tab, you’ll find a table with all the active and historical allocations towards the subgraphs, as well as charts that you can analyze and see your past performance as an Indexer.
 
 This section will also include details about your net Indexer rewards and net query fees. You’ll see the following metrics:
   - Delegated Stake - the stake from Delegators that can be allocated by you but cannot be slashed
@@ -155,9 +155,9 @@ The Delegator metrics you’ll see here in this tab include:
   - Total unrealized rewards
   - Total realized rewards
 
-In the second half of the page, you have the delegations table. Here you can see the Indexers that you delegated towards, as well and their details (such as rewards cuts, cooldown, etc).
+In the second half of the page, you have the delegations table. Here you can see the Indexers that you delegated towards, as well as their details (such as rewards cuts, cooldown, etc).
 
-With the buttons on the right side of the table, you can manage your delegation - delegate more, undelegate or withdraw your delegation after the thawing period.
+With the buttons on the right side of the table, you can manage your delegation - delegate more, undelegate, or withdraw your delegation after the thawing period.
 
 Keep in mind that this chart is horizontally scrollable, so if you scroll all the way to the right, you can also see the status of your delegation (delegating, undelegating, withdrawable).
 
@@ -181,6 +181,6 @@ Within your user profile, you’ll be able to manage your personal profile detai
 
 ![Explorer Image 15](/img/Profile-Settings.png)
 
-As your official portal into the world of decentralized data, the Graph Explorer allows you to take a variety of actions, no matter your role in the network. You can get to your profile settings by opening the dropdown menu next to your address, then clicking on the Settings button.
+As your official portal into the world of decentralized data, The Graph Explorer allows you to take a variety of actions, no matter your role in the network. You can get to your profile settings by opening the dropdown menu next to your address, then clicking on the Settings button.
 
 <img src={useBaseUrl("/img/Wallet-Details.png")} alt="Wallet details" width="400" style={{ display: "block", margin: "0 auto"}} />
