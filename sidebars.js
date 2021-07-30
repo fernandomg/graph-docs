@@ -19,7 +19,8 @@ module.exports = {
         'developer/deploy-subgraph-studio',
         'developer/query-the-graph',
         'developer/assemblyscript-api',
-        'developer/graphql-api'
+        'developer/graphql-api',
+        'developer/deprecating-a-subgraph'
       ],
     },
     {
