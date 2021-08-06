@@ -20,14 +20,6 @@ This query lists all the counters our mapping has created. Since we only create 
 }
 ```
 
-## Using The Legacy Explorer
-
-The Graph Explorer and its GraphQL playground is a useful way to explore and query deployed subgraphs on the hosted service.
-
-Some of the main features are detailed below:
-
-![Explorer Playground](/img/explorer-playground.png)
-
 ## Using The Graph Explorer
 
 Each subgraph published to our decentralized Graph Explorer has a unique query URL that you can find by navigating to the subgraph details page and clicking on the "Query" button on the top right corner. This will open a side pane that will give you the unique query URL of the subgraph as well as some instructions about how to query it.
@@ -40,128 +32,10 @@ Querying subgraphs using your API keys will generate query fees that will be pai
 
 You can also use the GraphQL playground in the "Playground" tab to query a subgraph within the explorer.
 
-## Querying from your app
+## Using The Legacy Explorer
 
-Once a subgraph is deployed to the Legacy Explorer or published to the Graph Explorer, you will be given the endpoint for your GraphQL API that should look something like this:
+The Graph Explorer and its GraphQL playground is a useful way to explore and query deployed subgraphs on the hosted service.
 
-**Legacy Explorer**
-```sh
-Queries (HTTP)
-https://api.thegraph.com/subgraphs/name/<USER_NAME>/<SUBGRAPH_NAME>
-```
+Some of the main features are detailed below:
 
-**Graph Explorer**
-```sh
-Queries (HTTP)
-https://gateway.thegraph.com/api/<API_KEY>/subgraphs/id/<SUBGRAPH_ID>
-```
-
-Using the GraphQL endpoint, you can use various GraphQL Client libraries to query the subgraph and populate your app with the data indexed by the subgraph.
-
-Here are a couple of the more popular GraphQL clients in the ecosystem and how to use them:
-
-### Apollo client
-
-[Apollo client](https://www.apollographql.com/docs/) supports web projects including frameworks like React and Vue, as well as mobile clients like iOS, Android, and React Native.
-
-Let's look at how fetch data from a subgraph with Apollo client in a web project.
-
-First, install `@apollo/client` and `graphql`:
-
-```sh
-npm install @apollo/client graphql
-```
-
-Then you can query the API with the following code:
-
-```javascript
-import { ApolloClient, InMemoryCache, gql } from '@apollo/client';
-
-const APIURL = "https://api.thegraph.com/subgraphs/name/username/subgraphname";
-
-const tokensQuery = `
-  query {
-    tokens {
-      id
-      tokenID
-      contentURI
-      metadataURI
-    }
-  }
-`
-
-const client = new ApolloClient({
-  uri: APIURL,
-  cache: new InMemoryCache()
-});
-
-client.query({
-  query: gql(tokensQuery)
-})
-.then(data => console.log("Subgraph data: ", data))
-.catch(err => { console.log("Error fetching data: ", err) });
-```
-
-To use variables, you can pass in a `variables` argument to the query:
-
-```javascript
-const tokensQuery = `
-  query($first: Int, $orderBy: BigInt, $orderDirection: String) {
-    tokens(
-      first: $first, orderBy: $orderBy, orderDirection: $orderDirection
-    ) {
-      id
-      tokenID
-      contentURI
-      metadataURI
-    }
-  }
-`
-
-client.query({
-  query: gql(tokensQuery),
-  variables: {
-    first: 10, orderBy: "createdAtTimestamp", orderDirection: "desc"
-  }
-})
-.then(data => console.log("Subgraph data: ", data))
-.catch(err => { console.log("Error fetching data: ", err) });
-```
-
-### URQL
-
-Another option is [URQL](https://formidable.com/open-source/urql/), a somewhat lighter weight GraphQL client library.
-
-Let's look at how fetch data from a subgraph with URQL in a web project.
-
-First, install `urql` and `graphql`:
-
-```sh
-npm install urql graphql
-```
-
-Then you can query the API with the following code:
-
-```javascript
-import { createClient } from 'urql';
-
-const APIURL = "https://api.thegraph.com/subgraphs/name/username/subgraphname";
-
-const tokensQuery = `
-  query {
-    tokens {
-      id
-      tokenID
-      contentURI
-      metadataURI
-    }
-  }
-`
-
-const client = createClient({
-  url: APIURL
-});
-
-const data = await client.query(tokensQuery).toPromise();
-```
-
+![Explorer Playground](/img/explorer-playground.png)
