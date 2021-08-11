@@ -80,6 +80,8 @@ You’ll only be able to index data from mainnet (even if your subgraph was publ
 
 Developers might want to update their subgraph, for a variety of reasons. When this is the case, you can deploy a new version of your subgraph to the Studio using the CLI (it will only be private at this point) and if you are happy with it, you can publish this new deployment to The Graph Explorer. This will create a new version of your subgraph that curators can start signaling on and indexers will be able to index this new version.
 
+Up until recently, developers were forced to deploy and publish a new version of their subgraph to the Explorer to update the metadata of their subgraphs. Now, developers can update the metadata of their subgraphs **without having to publish a new version**. Developers can update their subgraph details in the Studio (under profile picture, name, description, etc) by checking an option called **Update Details** in The Graph Explorer. If this is checked, an on-chain transaction will be generated that updates subgraph details in the Explorer without having to publish a new version with a new deployment. 
+
 Please note that there are costs associated with publishing a new version of a subgraph to the network. In addition to the transaction fees, developers must also fund a part of the curation tax on auto-migrating signal. You cannot publish a new version of your subgraph if curators have not signaled on it. For more information on the risks of curation, please read more [here](/curating).
 
 ## Managing your API Keys
