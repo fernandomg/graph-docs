@@ -93,7 +93,9 @@ Indexers may differentiate themselves by applying advanced techniques for making
 
 - __Amount staked__ - Monitoring the behavior of other indexers or looking at proportions of total stake allocated towards specific subgraphs can allow an indexer to monitor the supply side for subgraph queries to identify subgraphs that the network is showing confidence in or subgraphs that may show a need for more supply.
 
-What are the hardware requirements?
+- __Subgraphs with no indexing rewards__ - Some subgraphs do not generate indexing rewards mainly because they are using unsupported features like IPFS or because they are querying another network outside of mainnet. You will see a message on a subgraph if it is not generating indexing rewards. 
+
+### What are the hardware requirements?
 
 Small - Enough to get started indexing several subgraphs, will likely need to be expanded.
 Standard - Default setup, this is what is used in the example k8s/terraform deployment manifests.
