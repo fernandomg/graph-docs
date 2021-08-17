@@ -9,7 +9,9 @@ The Subgraph Studio is your place to build and create subgraphs, add metadata, a
 
 What you can do in the Subgraph Studio:
 
-- Create, publish, and deploy subgraphs using the CLI
+- Create a subgraph through the Studio UI
+- Deploy a subgraph using the CLI 
+- Publish a subgraph with the Studio UI 
 - Test it in the playground
 - Integrate it in staging using the query URL
 - Create and manage your API keys for specific subgraphs
@@ -29,7 +31,7 @@ Querying subgraphs generates query fees, used to reward [indexers](/indexing) on
 1. Sign in with your wallet - you can do this via MetaMask or WalletConnect
 1. Once you sign in, you will see your unique deploy key in your account home page. This will allow you to either publish your subgraphs or manage your API keys + billing. You will have a unique deploy key that can be re-generated if you think it has been compromised.
 
-## How to Create your Subgraphs
+## How to Create your Subgraph in Subgraph Studio
 
 The best part! When you first create a subgraph, you’ll be directed to fill out:
 
@@ -58,11 +60,11 @@ More features & networks will be added to The Graph Network incrementally.
 
 After you have created your subgraph, you will be able to deploy it using the [CLI](https://github.com/graphprotocol/graph-cli), or command line interface. Deploying a subgraph with the CLI will push the subgraph to the Studio where you’ll be able to test subgraphs using the playground. This will eventually allow you to publish to the Graph Network. For more information on CLI setup, [check this out](/developer/define-subgraph-hosted#install-the-graph-cli) (pst, make sure you have your deploy key on hand). Remember, deploying is **not the same as** publishing. When you deploy a subgraph, you just push it to the Studio where you’re able to test it. Versus, when you publish a subgraph, you are publishing it on-chain.
 
-## Testing your Subgraph
+## Testing your Subgraph in Subgraph Studio
 
 If you’d like to test your subgraph before publishing it to the network, you can do this in the Subgraph **Playground** or look at your logs. The Subgraph logs will tell you **where** your subgraph fails in the case that it does.
 
-## Publish your Subgraphs
+## Publish your Subgraph in Subgraph Studio
 
 You’ve made it this far - congrats! Publishing your subgraph means that an IPFS hash was generated when you deployed the subgraph within the CLI and is stored in the network’s Ethereum smart contracts. In order to publish your subgraph successfully, you’ll need to go through the following steps outlined in this [blog](https://thegraph.com/blog/building-with-subgraph-studio). Check out the video overview below as well:
 
@@ -76,7 +78,7 @@ You’ll only be able to index data from mainnet (even if your subgraph was publ
 
 **Now that you’ve published your subgraph, let’s get into how you’ll manage them on a regular basis.** Note that you cannot publish your subgraph to the network if it has failed syncing. This is usually because the subgraph has bugs - the logs will tell you where those issues exist!
 
-## Versioning your Subgraphs
+## Versioning your Subgraph with the CLI
 
 Developers might want to update their subgraph, for a variety of reasons. When this is the case, you can deploy a new version of your subgraph to the Studio using the CLI (it will only be private at this point) and if you are happy with it, you can publish this new deployment to The Graph Explorer. This will create a new version of your subgraph that curators can start signaling on and indexers will be able to index this new version.
 
@@ -115,7 +117,7 @@ The Studio will list out existing API keys, which will give you the ability to m
   </li>
 </ol>
 
-## How to Manage your Subgraphs
+## How to Manage your Subgraph
 
 API keys aside, you’ll have many tools at your disposal to manage your subgraphs. You can organize your subgraphs by their **status** and **category**.
 - The **Status** tag allows you to pick between a variety of tags including `<created>`, `<deployed>`, `<published>`, `<archived>`, etc.
