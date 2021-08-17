@@ -17,6 +17,7 @@ module.exports = {
         'developer/create-subgraph-hosted',
         'developer/deploy-subgraph-hosted',
         'developer/deploy-subgraph-studio',
+        'developer/publish-subgraph',
         'developer/query-the-graph',
         'developer/querying-from-your-app',
         'developer/assemblyscript-api',
