@@ -50,14 +50,14 @@ module.exports = {
       type: 'doc',
       id: 'explorer',
       label: 'The Graph Explorer'
-    }
-  ],
-   {
-      type: 'category', 
-      label: 'Legacy Explorer', 
+    },
+    {
+      type: 'category',
+      label: 'Legacy Explorer',
       items: [
         'legacyexplorer/whatislegacyexplorer',
         'developer/deploy-subgraph-studio',
-        ]
+      ]
     },
-};
+  ],
+}
