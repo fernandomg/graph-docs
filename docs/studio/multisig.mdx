@@ -1,0 +1,85 @@
+---
+id: multisig
+title: Using a Multisig wallet
+---
+
+Subgraph Studio currently doesn't support signing with Multisig wallets. Until we do, you can follow 
+our guide on how to publish your subgraph by invoking 
+the [GNS contract](https://github.com/graphprotocol/contracts/blob/dev/contracts/discovery/GNS.sol) functions. 
+
+### Create a subgraph
+Similary to using a regular wallet, you can create a subgraph by connecting your non-multisig wallet 
+in Studio. Once you are connected the wallet and signed, simply create a new subgraph.
+Make sure you fill out all the details, such as subgraph name, description, image, website and 
+source code url if applicable.
+
+For initializing a starter subgraph, you can follow the commands shown in the UI, or simply run
+```
+graph init --studio <SUBGRAPH_SLUG>
+```
+
+Where `SUBGRAPH_SLUG` is the name of your subgraph that you can copy from the UI, or from the URL 
+in the browser.
+This command should create a folder in your file system with all the necessary files to start developing a subgraph.
+
+### Deploy a subgraph
+Once your subgraph is ready to be deployed to the graph node, simply follow the commands shown in the UI,
+or run the following command:
+```
+graph deploy --studio <SUBGRAPH_SLUG>
+```
+
+__Note__: Make sure that you are inside of the subgraph folder before running that command.
+
+### Publish a subgraph or a version
+You can either publish a new subgraph to the decentralized network or publish a new version of the 
+previously published subgraph.
+
+#### Publish a new subgraph
+There are a couple of ways to publish a subgraph using Multisig wallets, here we'll describe 
+invoking the [`publishNewSubgraph`](https://github.com/graphprotocol/contracts/blob/dev/contracts/discovery/GNS.sol#L231) function
+in the [GNS contract](https://etherscan.io/address/0xaDcA0dd4729c8BA3aCf3E99F3A9f471EF37b6825) using Etherscan.
+
+Before we use that function, we need to generate input arguments for it. Access [this page](https://thegraph.com/studio/multisig) in 
+Studio and provide:
+- Ethereum address of your Multisig wallet
+- Subgraph that you want to publish
+- Version that you want to publish 
+
+After clicking on "Get Arguments" we'll generate all the contract arguments for you! 
+
+There should be 4 arguments:
+- `graphAccount`: which is your Multisig account address 
+- `subgraphDeploymentID`: which is the hex hash of the deployment ID for that subgraph
+- `versionMetadata`: version metadata (label and description) gets uploaded to IPFS, and we provide
+ the hex hash value for that JSON file
+- `subgraphMetadata`: simlarly to version metadata, subgraph metadata (name, image, description, website and source code url)
+gets uploaded to IPFS, and we provide the hex hash value for that JSON file
+
+With those 4 arguments, you should be able to go [here](https://etherscan.io/address/0xaDcA0dd4729c8BA3aCf3E99F3A9f471EF37b6825#writeProxyContract)
+and pass them into the `publishNewSubgraph` function. 
+
+#### Publish a new version
+If a subgraph you selected already has one version published to decentralized network (Testnet or Mainnet) 
+and you are trying to publish another version to that same network, you'll need to invoke 
+[`publishNewVersion`](https://github.com/graphprotocol/contracts/blob/dev/contracts/discovery/GNS.sol#L255) function
+in the [GNS contract](https://etherscan.io/address/0xaDcA0dd4729c8BA3aCf3E99F3A9f471EF37b6825) using Etherscan. 
+
+Before we use that function, we need to generate input arguments for it. Access [this page](https://thegraph.com/studio/multisig) in 
+Studio and provide:
+- Ethereum address of your Multisig wallet
+- Subgraph that you want to publish
+- Version that you want to publish 
+
+After clicking on "Get Arguments" we'll generate all the contract arguments for you! 
+
+There should be 4 arguments:
+- `graphAccount`: which is your Multisig account address 
+- `subgraphNumber`: is the number of your already published subgraph. It is a part of the subgraph id
+for a published subgraph queried through the graph network subgraph.
+- `versionMetadata`: version metadata (label and description) gets uploaded to IPFS, and we provide
+ the hex hash value for that JSON file
+- `subgraphDeploymentID`: which is the hex hash of the deployment ID for that subgraph
+
+With those 4 arguments, you should be able to go [here](https://etherscan.io/address/0xaDcA0dd4729c8BA3aCf3E99F3A9f471EF37b6825#writeProxyContract)
+and pass them into the `publishNewVersion` function. 

@@ -43,7 +43,8 @@ module.exports = {
       label: 'Subgraph Studio',
       items: [
         'studio/subgraph-studio',
-        'studio/billing'
+        'studio/multisig',
+        'studio/billing',
       ]
     },
     {
