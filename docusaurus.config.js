@@ -33,7 +33,7 @@ module.exports = {
             from: '/define-a-subgraph'
           },
           {
-            to: '/developer/deploy-subgraph-hosted',
+            to: '/legacyexplorer/deploy-subgraph-hosted',
             from: '/deploy-a-subgraph'
           },
           {
