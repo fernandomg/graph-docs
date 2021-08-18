@@ -15,6 +15,7 @@ module.exports = {
         'developer/quick-start',
         'developer/define-subgraph-hosted',
         'developer/create-subgraph-hosted',
+        'developer/deploy-subgraph-studio',
         'developer/publish-subgraph',
         'developer/query-the-graph',
         'developer/querying-from-your-app',
@@ -57,7 +58,7 @@ module.exports = {
       label: 'Legacy Explorer',
       items: [
         'legacyexplorer/whatislegacyexplorer',
-        'developer/deploy-subgraph-studio',
+        'legacyexplorer/deploy-subgraph-hosted'
       ]
     },
   ],
