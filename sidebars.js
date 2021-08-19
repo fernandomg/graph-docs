@@ -13,6 +13,7 @@ module.exports = {
       label: 'Developer',
       items: [
         'developer/quick-start',
+        'developer/quick-start-hardhat',
         'developer/define-subgraph-hosted',
         'developer/create-subgraph-hosted',
         'developer/deploy-subgraph-studio',

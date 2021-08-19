@@ -1,0 +1,142 @@
+---
+id: quick-start-hardhat
+title: Quick Start with Hardhat
+---
+
+This page will guide you through creating a subgraph for contracts that you deployed either to a local Hardhat testnet.
+
+## Local Development
+
+This guide uses Hardhat for local development. It covers the following steps:
+
+1. Start a local Graph Node
+2. Initialize a new subgraph
+3. Deploy an example smart contract to hardhat-testnet
+4. Deploy the subgraph to the local Graph Node
+5. Use the subgraph in a dApp built with React
+
+### 1. Run a local Graph Node
+
+In a terminal:
+
+1. Clone Graph Node with
+
+```sh
+$ git clone https://github.com/graphprotocol/graph-node/
+```
+
+2. Enter the Graph Node's Docker directory:
+
+```sh
+$ cd graph-node/docker
+```
+
+3. This is for Linux users only. The Graph Node Docker Compose setup uses host.docker.internal as the alias for the host machine. On Linux, this is not supported yet. In order to replace it with the host IP address, run the following from the Docker directory:
+
+```sh
+./setup.sh
+```
+
+The script will write the host IP address into `docker-compose.yml`.
+
+4. Start a local Graph Node that will connect to Ganache on your host:
+
+```sh
+$ docker-compose up -d
+```
+**NOTE:** `-d` is for the detached mode. This will run containers in the background.
+
+### 2. Initialize a new subgraph
+1. Install Graph CLI globally with npm or yarn:
+
+```sh
+# NPM
+$ npm install -g @graphprotocol/graph-cli
+
+# Yarn
+$ yarn global add @graphprotocol/graph-cli
+```
+
+2. Make sure you are inside the folder in which you want to create a subgraph on your machine, and run:
+
+```sh
+$ graph init <GITHUB_USERNAME>/<SUBGRAPH_NAME> [<DIRECTORY>] --from-example=hardhat --studio
+```
+
+- `<GITHUB_USERNAME>` is required. It's your GitHub username
+- `<SUBGRAPH_NAME>` is required. It's the name of your subgraph project
+- `<DIRECTORY>` is optional. It's the name of the directory that your subgraph is created in. Defaults to `<SUBGRAPH_NAME>`.
+
+This will create an example subgraph that you can use as a starting point for developing your own subgraph. For more information on how to write a subgraph, check out our docs section on Define a Subgraph.
+
+### 3. Deploy an example smart contract to Hardhat network
+After running `graph init` in step 3, you can now deploy the example smart contract that the subgraph indexes to Ganache.
+In the root directory of the subgraph from step 3.
+
+1. Initialize the local network
+```sh
+$ yarn hardhat:node
+````
+
+2. Open another terminal in the same directory, and simply run
+```sh
+$ yarn hardhat:deploy
+$ yarn hardhat:create-gravatars
+
+```
+This will compile the `GravatarRegistry` smart contract and deploy it to Hardhat network. It will also execute a couple of transactions against the contract so that there is data to index.
+
+**NOTE:** `yarn hardhat:deploy` will print the address the GravatarRegistry contract is deployed to. Make sure to copy this contract, you will need it later.
+
+### 4. Deploy the subgraph to the local Graph Node
+
+1. In the root directory of your subgraph, add the contract address from the previous step to the subgraph:
+
+```sh
+$ sed -i -e \
+    's/0x2E645469f354BB4F5c8a05B3b30A929361cf77eC/<CONTRACT_ADDRESS>/g' \
+    subgraph.yaml
+```
+
+2. Install dependencies of your subgraph and run the Graph CLI code generation:
+
+```sh
+$ yarn && yarn codegen
+```
+
+3. Then, allocate the subgraph name in the Graph Node with
+
+```sh
+$ yarn create-local
+```
+
+4. Lastly, run
+
+```sh
+$ yarn deploy-local
+```
+
+to deploy the subgraph to your local Graph Node.
+
+If you want to see the logs being processed, check out the terminal output of the Graph Node. The same for troubleshooting any errors.
+
+### 6. Use the subgraph in a dApp built with React
+
+For this, open another terminal. Then, clone an example dApp that is compatible with this subgraph with
+
+```sh
+$ git clone https://github.com/graphprotocol/ethdenver-dapp/
+```
+
+Afterwards, enter the app directory and configure it to use the GraphQL endpoint of your example subgraph:
+
+```sh
+$ cd ethdenver-dapp
+$ echo 'REACT_APP_GRAPHQL_ENDPOINT=http://localhost:8000/subgraphs/name/<GITHUB_USERNAME>/<SUBGRAPH_NAME>' > .env
+```
+
+Finally, install the dApp's dependencies and start it:
+
+```sh
+$ yarn && yarn start
+```
