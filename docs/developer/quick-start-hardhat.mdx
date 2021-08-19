@@ -9,23 +9,47 @@ This page will guide you through creating a subgraph for contracts that you depl
 
 This guide uses Hardhat for local development. It covers the following steps:
 
-1. Start Hardhat local network
-2. Start a local Graph Node
-3. Initialize a new subgraph
+1. Initialize a new subgraph
+2. Start Hardhat local network
+3. Run a local Graph Node
 4. Deploy an example smart contract to hardhat-testnet
 5. Deploy the subgraph to the local Graph Node
 6. Use the subgraph in a dApp built with React
 
-### 1. Start Hardhat local network
-
-Run:
+### 1. Initialize a new subgraph
+1. Install Graph CLI globally with npm or yarn:
 
 ```sh
-$ npx hardhat node --hostname 0.0.0.0
-```
-in a terminal. It will create 10 test accounts with some Ether on all of them. Note that `--hostname 0.0.0.0` is necessary for Hardhat network to be accessible from within Docker and from other machines.
+# NPM
+$ npm install -g @graphprotocol/graph-cli
 
-### 2. Run a local Graph Node
+# Yarn
+$ yarn global add @graphprotocol/graph-cli
+```
+
+2. Make sure you are inside the folder in which you want to create a subgraph on your machine, and run:
+
+```sh
+$ graph init <GITHUB_USERNAME>/<SUBGRAPH_NAME> [<DIRECTORY>] --from-example=hardhat --studio
+```
+
+- `<GITHUB_USERNAME>` is required. It's your GitHub username
+- `<SUBGRAPH_NAME>` is required. It's the name of your subgraph project
+- `<DIRECTORY>` is optional. It's the name of the directory that your subgraph is created in. Defaults to `<SUBGRAPH_NAME>`.
+
+This will create an example subgraph that you can use as a starting point for developing your own subgraph. For more information on how to write a subgraph, check out our docs section on Define a Subgraph.
+
+### 2. Start Hardhat local network
+
+Run
+
+```sh
+$ yarn hardhat:node
+```
+
+in the root directory of the subgraph from step 1. It will create 10 test accounts with some Ether on all of them. Note that `--hostname 0.0.0.0` is necessary for Hardhat network to be accessible from within Docker and from other machines.
+
+### 3. Run a local Graph Node
 
 In another terminal:
 
@@ -65,32 +89,9 @@ For more information see: https://github.com/graphprotocol/graph-node/issues/250
 $ docker-compose up
 ```
 
-### 3. Initialize a new subgraph
-1. Install Graph CLI globally with npm or yarn:
-
-```sh
-# NPM
-$ npm install -g @graphprotocol/graph-cli
-
-# Yarn
-$ yarn global add @graphprotocol/graph-cli
-```
-
-2. Make sure you are inside the folder in which you want to create a subgraph on your machine, and run:
-
-```sh
-$ graph init <GITHUB_USERNAME>/<SUBGRAPH_NAME> [<DIRECTORY>] --from-example=hardhat --studio
-```
-
-- `<GITHUB_USERNAME>` is required. It's your GitHub username
-- `<SUBGRAPH_NAME>` is required. It's the name of your subgraph project
-- `<DIRECTORY>` is optional. It's the name of the directory that your subgraph is created in. Defaults to `<SUBGRAPH_NAME>`.
-
-This will create an example subgraph that you can use as a starting point for developing your own subgraph. For more information on how to write a subgraph, check out our docs section on Define a Subgraph.
-
 ### 4. Deploy an example smart contract to Hardhat network
 
-After running `graph init` in step 3, you can now deploy the example smart contract that the subgraph indexes to Hardhat network.
+After running `graph init` in step 1, you can now deploy the example smart contract that the subgraph indexes to Hardhat network.
 
 To do this, simply run
 ```sh
@@ -99,7 +100,7 @@ $ yarn hardhat:create-gravatars
 
 ```
 
-in the root directory of the subgraph from step 3. This will compile the `GravatarRegistry` smart contract and deploy it to Hardhat network. It will also execute a couple of transactions against the contract so that there is data to index.
+in the root directory of the subgraph from step 1. This will compile the `GravatarRegistry` smart contract and deploy it to Hardhat network. It will also execute a couple of transactions against the contract so that there is data to index.
 
 **NOTE:** `yarn hardhat:deploy` will print the address the GravatarRegistry contract is deployed to. Make sure to copy this contract, you will need it later.
 
