@@ -3,21 +3,31 @@ id: quick-start-hardhat
 title: Quick Start with Hardhat
 ---
 
-This page will guide you through creating a subgraph for contracts that you deployed either to a local Hardhat testnet.
+This page will guide you through creating a subgraph for contracts that you deployed to a local Hardhat testnet.
 
 ## Local Development
 
 This guide uses Hardhat for local development. It covers the following steps:
 
-1. Start a local Graph Node
-2. Initialize a new subgraph
-3. Deploy an example smart contract to hardhat-testnet
-4. Deploy the subgraph to the local Graph Node
-5. Use the subgraph in a dApp built with React
+1. Start Hardhat local network
+2. Start a local Graph Node
+3. Initialize a new subgraph
+4. Deploy an example smart contract to hardhat-testnet
+5. Deploy the subgraph to the local Graph Node
+6. Use the subgraph in a dApp built with React
 
-### 1. Run a local Graph Node
+### 1. Start Hardhat local network
 
-In a terminal:
+Run:
+
+```sh
+$ npx hardhat node --hostname 0.0.0.0
+```
+in a terminal. It will create 10 test accounts with some Ether on all of them. Note that `--hostname 0.0.0.0` is necessary for Hardhat network to be accessible from within Docker and from other machines.
+
+### 2. Run a local Graph Node
+
+In another terminal:
 
 1. Clone Graph Node with
 
@@ -39,14 +49,23 @@ $ cd graph-node/docker
 
 The script will write the host IP address into `docker-compose.yml`.
 
-4. Start a local Graph Node that will connect to Ganache on your host:
+4. This is for Mac M1 users only. You need to specify a different docker image to properly work on M1.
 
 ```sh
-$ docker-compose up -d
+$ sed -i -e \
+    's/image: graphprotocol\/graph-node/image: graphprotocol\/graph-node:2c23cce/g' \
+    docker-compose.yml
 ```
-**NOTE:** `-d` is for the detached mode. This will run containers in the background.
 
-### 2. Initialize a new subgraph
+For more information see: https://github.com/graphprotocol/graph-node/issues/2502#issuecomment-851669771
+
+5. Start a local Graph Node that will connect to Hardhat network on your host:
+
+```sh
+$ docker-compose up
+```
+
+### 3. Initialize a new subgraph
 1. Install Graph CLI globally with npm or yarn:
 
 ```sh
@@ -69,32 +88,28 @@ $ graph init <GITHUB_USERNAME>/<SUBGRAPH_NAME> [<DIRECTORY>] --from-example=hard
 
 This will create an example subgraph that you can use as a starting point for developing your own subgraph. For more information on how to write a subgraph, check out our docs section on Define a Subgraph.
 
-### 3. Deploy an example smart contract to Hardhat network
-After running `graph init` in step 3, you can now deploy the example smart contract that the subgraph indexes to Ganache.
-In the root directory of the subgraph from step 3.
+### 4. Deploy an example smart contract to Hardhat network
 
-1. Initialize the local network
-```sh
-$ yarn hardhat:node
-````
+After running `graph init` in step 3, you can now deploy the example smart contract that the subgraph indexes to Hardhat network.
 
-2. Open another terminal in the same directory, and simply run
+To do this, simply run
 ```sh
 $ yarn hardhat:deploy
 $ yarn hardhat:create-gravatars
 
 ```
-This will compile the `GravatarRegistry` smart contract and deploy it to Hardhat network. It will also execute a couple of transactions against the contract so that there is data to index.
+
+in the root directory of the subgraph from step 3. This will compile the `GravatarRegistry` smart contract and deploy it to Hardhat network. It will also execute a couple of transactions against the contract so that there is data to index.
 
 **NOTE:** `yarn hardhat:deploy` will print the address the GravatarRegistry contract is deployed to. Make sure to copy this contract, you will need it later.
 
-### 4. Deploy the subgraph to the local Graph Node
+### 5. Deploy the subgraph to the local Graph Node
 
-1. In the root directory of your subgraph, add the contract address from the previous step to the subgraph:
+1. If the contract address you got from deploy is different from `0x5fbdb2315678afecb367f032d93f642f64180aa3` then, in the root directory of your subgraph, add the contract address from the previous step to the subgraph:
 
 ```sh
 $ sed -i -e \
-    's/0x2E645469f354BB4F5c8a05B3b30A929361cf77eC/<CONTRACT_ADDRESS>/g' \
+    's/0x5fbdb2315678afecb367f032d93f642f64180aa3/<CONTRACT_ADDRESS>/g' \
     subgraph.yaml
 ```
 
