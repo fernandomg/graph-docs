@@ -106,11 +106,11 @@ in the root directory of the subgraph from step 1. This will compile the `Gravat
 
 ### 5. Deploy the subgraph to the local Graph Node
 
-1. If the contract address you got from deploy is different from `0x5fbdb2315678afecb367f032d93f642f64180aa3` then, in the root directory of your subgraph, add the contract address from the previous step to the subgraph:
+1. If the contract address you got from deploy is different from `0x5FbDB2315678afecb367f032d93F642f64180aa3` then, in the root directory of your subgraph, add the contract address from the previous step to the subgraph:
 
 ```sh
 $ sed -i -e \
-    's/0x5fbdb2315678afecb367f032d93f642f64180aa3/<CONTRACT_ADDRESS>/g' \
+    's/0x5FbDB2315678afecb367f032d93F642f64180aa3/<CONTRACT_ADDRESS>/g' \
     subgraph.yaml
 ```
 
